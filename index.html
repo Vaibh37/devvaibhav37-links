@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
 
@@ -11,15 +10,35 @@
 
     <meta
         name="description"
-        content="Vaibhav — developer, builder, and professional overthinker."
+        content="Developer Vaibhav. Student developer turning random thoughts into real projects."
     >
 
     <meta
         name="theme-color"
-        content="#f7f8ff"
+        content="#F8FAFF"
     >
 
-    <title>Vaibhav - Developer</title>
+    <meta
+        property="og:title"
+        content="Developer Vaibhav"
+    >
+
+    <meta
+        property="og:description"
+        content="Student developer turning random thoughts into real projects."
+    >
+
+    <meta
+        property="og:image"
+        content="assets/profile.jpeg"
+    >
+
+    <meta
+        name="twitter:card"
+        content="summary_large_image"
+    >
+
+    <title>Developer Vaibhav</title>
 
     <link
         rel="stylesheet"
@@ -27,449 +46,379 @@
     >
 </head>
 
-
 <body>
 
-    <!-- =========================================================
-         CUSTOM CURSOR
-         ========================================================= -->
+    <div class="loader" id="loader">
+        <div class="loader__ambient"></div>
 
-    <div class="cursor" aria-hidden="true">
+        <div class="loader__content">
+            <span class="loader__mark"></span>
 
-        <div class="cursor__dot"></div>
+            <p>developer vaibhav</p>
 
-        <div class="cursor__ring"></div>
+            <div class="loader__bar">
+                <span id="loaderBar"></span>
+            </div>
 
+            <span class="loader__number" id="loaderNumber">
+                00
+            </span>
+        </div>
     </div>
 
 
-    <!-- =========================================================
-         AMBIENT BACKGROUND
-         ========================================================= -->
+    <div class="ambient" aria-hidden="true">
+        <span class="ambient__orb ambient__orb--sky"></span>
+        <span class="ambient__orb ambient__orb--lavender"></span>
+        <span class="ambient__orb ambient__orb--pink"></span>
+
+        <span class="ambient__line ambient__line--one"></span>
+        <span class="ambient__line ambient__line--two"></span>
+        <span class="ambient__line ambient__line--three"></span>
+
+        <span class="ambient__grain"></span>
+    </div>
+
 
     <div
-        class="ambient"
+        class="pointer-light"
+        id="pointerLight"
+        aria-hidden="true"
+    ></div>
+
+
+    <div
+        class="cursor"
+        id="cursor"
         aria-hidden="true"
     >
+        <span class="cursor__dot"></span>
+        <span class="cursor__ring"></span>
 
-        <div class="ambient__orb ambient__orb--one"></div>
-
-        <div class="ambient__orb ambient__orb--two"></div>
-
-        <div class="ambient__orb ambient__orb--three"></div>
-
-        <div class="ambient__grid"></div>
-
-        <div class="ambient__noise"></div>
-
+        <span
+            class="cursor__label"
+            id="cursorLabel"
+        ></span>
     </div>
 
 
-    <!-- =========================================================
-         NAVIGATION
-         ========================================================= -->
+    <div
+        class="scroll-thread"
+        aria-hidden="true"
+    >
+        <span id="scrollThread"></span>
+    </div>
 
-    <header class="nav">
+
+    <header class="header" id="header">
 
         <a
             href="#home"
-            class="nav__logo"
-            aria-label="Go to home"
+            class="brand"
+            data-cursor="TOP"
         >
-
-            <span class="nav__logo-mark">
-                V
-            </span>
+            <span
+                class="brand__dot"
+                id="secretTrigger"
+            ></span>
 
             <span>
-                devvaibhav37
+                @devvaibhav37
             </span>
-
         </a>
 
 
-        <nav
-            class="nav__links"
-            aria-label="Main navigation"
-        >
-
-            <a href="#about">
-                about
-            </a>
-
-            <a href="#socials">
-                find me
-            </a>
-
-            <a href="#contact">
-                contact
-            </a>
-
-        </nav>
-
-
-        <a
-            href="#contact"
-            class="nav__button"
-        >
-
-            let's talk
-
-            <span>
-                ↗
+        <div class="header__index">
+            <span id="sectionCurrent">
+                01
             </span>
 
-        </a>
+            <span>
+                /
+            </span>
+
+            <span>
+                05
+            </span>
+        </div>
+
+
+        <button
+            class="motion-toggle"
+            id="motionToggle"
+            type="button"
+            aria-label="Toggle motion"
+            data-cursor="MOTION"
+        >
+            <span></span>
+            <span></span>
+        </button>
 
     </header>
 
 
-
-    <!-- =========================================================
-         MAIN
-         ========================================================= -->
-
     <main>
-
-
-        <!-- =====================================================
-             HERO
-             ===================================================== -->
 
         <section
             class="hero"
             id="home"
+            data-section="01"
         >
 
-            <div class="hero__top">
-
-                <span class="eyebrow">
-                    available for interesting things
-                </span>
-
-                <span class="hero__location">
-                    india · 2026
-                </span>
-
+            <div class="hero__grid" aria-hidden="true">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
 
 
-            <div class="hero__main">
-
-
-                <!-- HERO INTRO -->
-
-                <div class="hero__intro">
-
-                    <p class="hero__small">
-                        hey, i'm
-                    </p>
-
-
-                    <h1 class="hero__title">
-                        VAIBHAV<span>.</span>
-                    </h1>
-
-
-                    <p class="hero__description">
-
-                        a developer who turns random
-                        thoughts into random projects.
-
-                    </p>
-
-
-                    <div class="hero__actions">
-
-                        <a
-                            href="#about"
-                            class="button button--primary"
-                        >
-
-                            more about me
-
-                            <span>
-                                ↓
-                            </span>
-
-                        </a>
-
-
-                        <a
-                            href="#contact"
-                            class="button button--ghost"
-                        >
-
-                            say hello
-
-                            <span>
-                                ↗
-                            </span>
-
-                        </a>
-
-                    </div>
-
-                </div>
-
-
-
-                <!-- HERO PROFILE -->
+            <div class="shell hero__layout">
 
                 <div class="hero__visual">
 
-
-                    <div class="hero__image-wrap">
-
-                        <div class="hero__image-backdrop"></div>
-
-
-                        <img
-                            src="assets/profile.jpeg"
-                            alt="Vaibhav"
-                            class="hero__image"
-                        >
-
-
-                        <div class="hero__image-outline"></div>
-
-                    </div>
-
-
-                    <!-- STATUS CARD -->
-
                     <div
-                        class="float-card float-card--status"
+                        class="profile-stage"
+                        id="profileStage"
+                        data-cursor="HELLO"
                     >
 
-                        <span class="status-dot"></span>
+                        <span
+                            class="profile-stage__orbit profile-stage__orbit--one"
+                        ></span>
 
-                        <div>
+                        <span
+                            class="profile-stage__orbit profile-stage__orbit--two"
+                        ></span>
 
-                            <small>
-                                currently
-                            </small>
+                        <span
+                            class="profile-stage__orbit profile-stage__orbit--three"
+                        ></span>
 
-                            <strong>
-                                building
-                            </strong>
 
+                        <span
+                            class="profile-stage__glow profile-stage__glow--one"
+                        ></span>
+
+                        <span
+                            class="profile-stage__glow profile-stage__glow--two"
+                        ></span>
+
+
+                        <div class="profile">
+
+                            <div class="profile__frame"></div>
+
+                            <div class="profile__image-wrap">
+
+                                <img
+                                    src="assets/profile.jpeg"
+                                    alt="Vaibhav"
+                                    class="profile__image"
+                                >
+
+                                <span
+                                    class="profile__shine"
+                                ></span>
+
+                            </div>
+
+                        </div>
+
+
+                        <span class="profile-stage__point profile-stage__point--one"></span>
+                        <span class="profile-stage__point profile-stage__point--two"></span>
+                        <span class="profile-stage__point profile-stage__point--three"></span>
+
+
+                        <div class="profile-stage__index">
+                            <span>01</span>
+                            <span>/</span>
+                            <span>identity</span>
                         </div>
 
                     </div>
 
+                </div>
 
-                    <!-- STACK CARD -->
 
-                    <div
-                        class="float-card float-card--code"
+                <div class="hero__copy">
+
+                    <div class="section-marker">
+                        <span></span>
+                        <p>01</p>
+                    </div>
+
+
+                    <h1>
+                        <span>Developer</span>
+                        <span>Vaibhav</span>
+                    </h1>
+
+
+                    <p class="hero__handle">
+                        @devvaibhav37
+                    </p>
+
+
+                    <div class="hero__bio">
+                        <span></span>
+
+                        <p>
+                            just a guy turning random thoughts into random projects
+                        </p>
+                    </div>
+
+
+                    <div class="hero__status">
+                        <span></span>
+
+                        <p>
+                            currently building interesting things
+                        </p>
+                    </div>
+
+
+                    <a
+                        href="#about"
+                        class="scroll-link"
+                        data-cursor="EXPLORE"
                     >
-
-                        <span>
-                            &lt;/&gt;
-                        </span>
-
-                        <div>
-
-                            <small>
-                                interested in
-                            </small>
-
-                            <strong>
-                                web + ai
-                            </strong>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="hero__number">
-                        01
-                    </div>
+                        <span>explore</span>
+                        <span>↓</span>
+                    </a>
 
                 </div>
 
             </div>
 
 
-            <!-- HERO FOOT -->
+            <span class="hero__side hero__side--left">
+                01
+            </span>
 
-            <div class="hero__bottom">
-
-                <span>
-                    scroll to explore
-                </span>
-
-                <div class="hero__line"></div>
-
-                <span>
-                    ↓
-                </span>
-
-            </div>
+            <span class="hero__side hero__side--right">
+                india
+            </span>
 
         </section>
 
 
+        <div class="divider shell">
+            <span></span>
 
-        <!-- =====================================================
-             MARQUEE
-             ===================================================== -->
+            <p>
+                01 / 05
+            </p>
 
-        <div
-            class="marquee"
-            aria-hidden="true"
-        >
-
-            <div class="marquee__track">
-
-                <span>
-                    DEVELOPER
-                </span>
-
-                <i>
-                    ✦
-                </i>
-
-                <span>
-                    BUILDER
-                </span>
-
-                <i>
-                    ✦
-                </i>
-
-                <span>
-                    AI ENTHUSIAST
-                </span>
-
-                <i>
-                    ✦
-                </i>
-
-                <span>
-                    WEB DEVELOPER
-                </span>
-
-                <i>
-                    ✦
-                </i>
-
-                <span>
-                    PROFESSIONAL OVERTHINKER
-                </span>
-
-                <i>
-                    ✦
-                </i>
-
-                <span>
-                    DEVELOPER
-                </span>
-
-                <i>
-                    ✦
-                </i>
-
-                <span>
-                    BUILDER
-                </span>
-
-                <i>
-                    ✦
-                </i>
-
-            </div>
-
+            <span></span>
         </div>
 
-
-
-        <!-- =====================================================
-             ABOUT
-             ===================================================== -->
 
         <section
             class="about section"
             id="about"
+            data-section="02"
         >
 
-            <div class="section-label">
+            <div class="shell">
 
-                <span>
-                    02
-                </span>
-
-                <span>
-                    about me
-                </span>
-
-            </div>
+                <div class="section-head reveal">
+                    <p>02 / 05</p>
+                    <span>more about the human</span>
+                </div>
 
 
-            <div class="about__content">
+                <div class="about__grid">
 
-                <h2>
+                    <div class="about__copy">
 
-                    i like making
-
-                    <span>
-                        things
-                    </span>
-
-                    that probably
-                    didn't need to exist.
-
-                </h2>
+                        <h2
+                            class="big-heading reveal"
+                            data-scramble
+                        >
+                            i build whatever refuses to leave my head
+                        </h2>
 
 
-                <div class="about__side">
+                        <div class="about__text reveal">
 
-                    <p>
+                            <p>
+                                i'm vaibhav. a student developer who likes turning random thoughts into things you can actually open and use.
+                            </p>
 
-                        I'm interested in web development,
-                        AI, weird ideas, and figuring out
-                        how things work by building them.
+                            <p>
+                                right now i'm exploring full stack development, ai, data, and whatever catches my attention next.
+                            </p>
 
-                    </p>
-
-
-                    <p>
-
-                        Most of my ideas start with a
-                        random thought and somehow turn
-                        into a project.
-
-                    </p>
-
-
-                    <div class="about__facts">
-
-                        <div class="about__fact">
-
-                            <span>
-                                focus
-                            </span>
-
-                            <strong>
-                                web + ai
-                            </strong>
+                            <p>
+                                i learn best by building something, breaking it, fixing it, and making it better.
+                            </p>
 
                         </div>
 
 
-                        <div class="about__fact">
+                        <p class="about__note reveal">
+                            sometimes the project is useful. sometimes absolutely nobody asked for it. both are equally likely.
+                        </p>
 
-                            <span>
-                                status
-                            </span>
+                    </div>
 
-                            <strong>
-                                learning & building
-                            </strong>
 
-                        </div>
+                    <div class="facts">
+
+                        <article
+                            class="fact reveal"
+                            data-tilt-card
+                        >
+                            <span>currently</span>
+                            <strong>student developer</strong>
+                        </article>
+
+
+                        <article
+                            class="fact reveal"
+                            data-tilt-card
+                        >
+                            <span>exploring</span>
+                            <strong>web and ai</strong>
+                        </article>
+
+
+                        <article
+                            class="fact reveal"
+                            data-tilt-card
+                        >
+                            <span>based in</span>
+                            <strong>india</strong>
+                        </article>
+
+
+                        <article
+                            class="fact reveal"
+                            data-tilt-card
+                        >
+                            <span>status</span>
+                            <strong>probably coding</strong>
+                        </article>
+
+
+                        <article
+                            class="fact reveal"
+                            data-tilt-card
+                        >
+                            <span>special ability</span>
+                            <strong>professional overthinker</strong>
+                        </article>
+
+
+                        <article
+                            class="fact reveal"
+                            data-tilt-card
+                        >
+                            <span>method</span>
+                            <strong>build break learn repeat</strong>
+                        </article>
 
                     </div>
 
@@ -480,234 +429,524 @@
         </section>
 
 
-
-        <!-- =====================================================
-             FIND ME
-             ===================================================== -->
-
         <section
-            class="social section"
-            id="socials"
+            class="project section"
+            id="studyos"
+            data-section="03"
         >
 
-            <div class="section-label">
+            <div class="shell">
 
-                <span>
-                    03
-                </span>
-
-                <span>
-                    find me
-                </span>
-
-            </div>
+                <div class="section-head reveal">
+                    <p>03 / 05</p>
+                    <span>featured build</span>
+                </div>
 
 
-            <div class="social__intro">
-
-                <h2>
-
-                    let's connect
-                    <span>somewhere.</span>
-
-                </h2>
-
-                <p>
-
-                    code, thoughts, random ideas —
-                    pick your preferred corner of the internet.
-
-                </p>
-
-            </div>
-
-
-            <div class="social__grid">
-
-
-                <!-- GITHUB -->
-
-                <a
-                    href="https://github.com/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="social-card"
-                >
-
-                    <span class="social-card__icon">
-                        ◇
-                    </span>
+                <div class="project__intro">
 
                     <div>
 
-                        <small>
-                            code
-                        </small>
+                        <p class="project__status reveal">
+                            currently shipping
+                        </p>
 
-                        <strong>
-                            GitHub
-                        </strong>
+                        <h2
+                            class="project__title reveal"
+                            data-scramble
+                        >
+                            StudyOS
+                        </h2>
 
                     </div>
 
-                    <span class="social-card__arrow">
-                        ↗
-                    </span>
 
-                </a>
+                    <p class="project__description reveal">
+                        one place for focus, planning, study sessions, progress, and the tools that make studying feel less scattered. built because jumping between a pile of different apps gets annoying fast.
+                    </p>
+
+                </div>
 
 
-
-                <!-- X -->
-
-                <a
-                    href="https://x.com/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="social-card"
+                <div
+                    class="project-card reveal"
+                    id="projectCard"
+                    data-cursor="VIEW"
                 >
 
-                    <span class="social-card__icon">
-                        𝕏
-                    </span>
-
-                    <div>
-
-                        <small>
-                            thoughts
-                        </small>
-
-                        <strong>
-                            X / Twitter
-                        </strong>
-
-                    </div>
-
-                    <span class="social-card__arrow">
-                        ↗
-                    </span>
-
-                </a>
+                    <span class="project-card__glow"></span>
 
 
+                    <div class="browser">
 
-                <!-- LINKEDIN -->
+                        <div class="browser__top">
 
-                <a
-                    href="https://www.linkedin.com/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="social-card"
-                >
+                            <div class="browser__dots">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
 
-                    <span class="social-card__icon">
-                        in
-                    </span>
+                            <div class="browser__address">
+                                studyos one omega vercel app
+                            </div>
 
-                    <div>
+                            <span class="browser__live">
+                                live
+                            </span>
 
-                        <small>
-                            professional
-                        </small>
+                        </div>
 
-                        <strong>
-                            LinkedIn
-                        </strong>
+
+                        <div class="browser__screen">
+
+                            <iframe
+                                src="https://studyos-one-omega.vercel.app/"
+                                title="StudyOS preview"
+                                loading="lazy"
+                            ></iframe>
+
+                            <span class="browser__glass"></span>
+
+                        </div>
 
                     </div>
 
-                    <span class="social-card__arrow">
-                        ↗
+
+                    <span class="project-tag project-tag--one">
+                        built to focus
                     </span>
 
-                </a>
-
-
-
-                <!-- EMAIL -->
-
-                <a
-                    href="mailto:devvaibhav37@gmail.com"
-                    class="social-card"
-                >
-
-                    <span class="social-card__icon">
-                        @
+                    <span class="project-tag project-tag--two">
+                        study smarter
                     </span>
 
-                    <div>
+                    <span class="project-tag project-tag--three">
+                        ship then improve
+                    </span>
 
-                        <small>
-                            email
-                        </small>
+                </div>
 
-                        <strong>
-                            devvaibhav37
-                        </strong>
+
+                <div class="project__bottom reveal">
+
+                    <div class="stack">
+                        <span>React</span>
+                        <span>Node</span>
+                        <span>Express</span>
+                        <span>MongoDB</span>
+                    </div>
+
+
+                    <div class="project__actions">
+
+                        <a
+                            href="https://studyos-one-omega.vercel.app/"
+                            class="project-button project-button--dark external-link"
+                            data-external-name="opening studyos"
+                            data-cursor="OPEN"
+                        >
+                            <span>open studyos</span>
+                            <span>↗</span>
+                        </a>
+
+
+                        <a
+                            href="https://github.com/Vaibh37/Studyos"
+                            class="project-button external-link"
+                            data-external-name="opening source"
+                            data-cursor="CODE"
+                        >
+                            <span>source code</span>
+                            <span>↗</span>
+                        </a>
 
                     </div>
 
-                    <span class="social-card__arrow">
-                        ↗
-                    </span>
-
-                </a>
+                </div>
 
             </div>
 
         </section>
 
 
+        <section class="now">
 
-        <!-- =====================================================
-             CONTACT
-             ===================================================== -->
+            <div class="now__label">
+                right now
+            </div>
+
+
+            <div class="now__window">
+
+                <div class="now__track" id="nowTrack">
+
+                    <span>building weird things</span>
+                    <i></i>
+
+                    <span>improving studyos</span>
+                    <i></i>
+
+                    <span>experimenting with ai</span>
+                    <i></i>
+
+                    <span>learning full stack</span>
+                    <i></i>
+
+                    <span>probably changing an animation again</span>
+                    <i></i>
+
+                    <span>building weird things</span>
+                    <i></i>
+
+                    <span>improving studyos</span>
+                    <i></i>
+
+                    <span>experimenting with ai</span>
+                    <i></i>
+
+                    <span>learning full stack</span>
+                    <i></i>
+
+                    <span>probably changing an animation again</span>
+                    <i></i>
+
+                </div>
+
+            </div>
+
+        </section>
+
 
         <section
-            class="contact section"
-            id="contact"
+            class="internet section"
+            id="internet"
+            data-section="04"
         >
 
-            <div class="contact__inner">
+            <div class="shell">
 
-                <span class="eyebrow">
-                    04 — let's make something
-                </span>
+                <div class="section-head reveal">
+                    <p>04 / 05</p>
+                    <span>find me on the internet</span>
+                </div>
 
 
-                <h2>
+                <div class="internet__intro">
 
-                    got an idea?
+                    <h2
+                        class="big-heading reveal"
+                        data-scramble
+                    >
+                        somewhere between code and chaos
+                    </h2>
 
-                    <span>
-                        let's make it real.
-                    </span>
 
+                    <p class="reveal">
+                        these are the places where i post, build, learn, write, and occasionally disappear into another project.
+                    </p>
+
+                </div>
+
+
+                <div class="social-grid">
+
+                    <a
+                        href="https://github.com/Vaibh37"
+                        class="social-card external-link reveal"
+                        data-external-name="opening github"
+                        data-cursor="OPEN"
+                        data-social-card
+                    >
+                        <div class="social-card__top">
+                            <span class="social-card__icon">
+                                GH
+                            </span>
+
+                            <span>
+                                ↗
+                            </span>
+                        </div>
+
+                        <div class="social-card__body">
+                            <strong>GitHub</strong>
+                            <span>@Vaibh37</span>
+                            <p>code and things i ship</p>
+                        </div>
+
+                        <span class="social-card__circle"></span>
+                    </a>
+
+
+                    <a
+                        href="https://x.com/devvaibhav37"
+                        class="social-card external-link reveal"
+                        data-external-name="opening personal x"
+                        data-cursor="OPEN"
+                        data-social-card
+                    >
+                        <div class="social-card__top">
+                            <span class="social-card__icon">
+                                X
+                            </span>
+
+                            <span>
+                                ↗
+                            </span>
+                        </div>
+
+                        <div class="social-card__body">
+                            <strong>X</strong>
+                            <span>@devvaibhav37</span>
+                            <p>personal thoughts and chaos</p>
+                        </div>
+
+                        <small>
+                            personal
+                        </small>
+
+                        <span class="social-card__circle"></span>
+                    </a>
+
+
+                    <a
+                        href="https://x.com/Bliss37_x"
+                        class="social-card external-link reveal"
+                        data-external-name="opening serious x"
+                        data-cursor="OPEN"
+                        data-social-card
+                    >
+                        <div class="social-card__top">
+                            <span class="social-card__icon">
+                                X
+                            </span>
+
+                            <span>
+                                ↗
+                            </span>
+                        </div>
+
+                        <div class="social-card__body">
+                            <strong>X</strong>
+                            <span>@Bliss37_x</span>
+                            <p>builds progress and serious updates</p>
+                        </div>
+
+                        <small>
+                            serious
+                        </small>
+
+                        <span class="social-card__circle"></span>
+                    </a>
+
+
+                    <a
+                        href="https://www.linkedin.com/in/dev-vaibhav-baa532308/"
+                        class="social-card external-link reveal"
+                        data-external-name="opening linkedin"
+                        data-cursor="OPEN"
+                        data-social-card
+                    >
+                        <div class="social-card__top">
+                            <span class="social-card__icon">
+                                in
+                            </span>
+
+                            <span>
+                                ↗
+                            </span>
+                        </div>
+
+                        <div class="social-card__body">
+                            <strong>LinkedIn</strong>
+                            <span>Dev Vaibhav</span>
+                            <p>work learning and connections</p>
+                        </div>
+
+                        <span class="social-card__circle"></span>
+                    </a>
+
+
+                    <a
+                        href="https://www.instagram.com/devvaibhav37/?hl=en"
+                        class="social-card external-link reveal"
+                        data-external-name="opening instagram"
+                        data-cursor="OPEN"
+                        data-social-card
+                    >
+                        <div class="social-card__top">
+                            <span class="social-card__icon">
+                                IG
+                            </span>
+
+                            <span>
+                                ↗
+                            </span>
+                        </div>
+
+                        <div class="social-card__body">
+                            <strong>Instagram</strong>
+                            <span>@devvaibhav37</span>
+                            <p>life outside the editor</p>
+                        </div>
+
+                        <span class="social-card__circle"></span>
+                    </a>
+
+
+                    <a
+                        href="https://medium.com/@vaibhavsarda.dev"
+                        class="social-card external-link reveal"
+                        data-external-name="opening medium"
+                        data-cursor="READ"
+                        data-social-card
+                    >
+                        <div class="social-card__top">
+                            <span class="social-card__icon">
+                                M
+                            </span>
+
+                            <span>
+                                ↗
+                            </span>
+                        </div>
+
+                        <div class="social-card__body">
+                            <strong>Medium</strong>
+                            <span>@vaibhavsarda.dev</span>
+                            <p>longer thoughts and writing</p>
+                        </div>
+
+                        <span class="social-card__circle"></span>
+                    </a>
+
+
+                    <a
+                        href="https://leetcode.com/u/vaibhav_sarda/"
+                        class="social-card external-link reveal"
+                        data-external-name="opening leetcode"
+                        data-cursor="CODE"
+                        data-social-card
+                    >
+                        <div class="social-card__top">
+                            <span class="social-card__icon">
+                                LC
+                            </span>
+
+                            <span>
+                                ↗
+                            </span>
+                        </div>
+
+                        <div class="social-card__body">
+                            <strong>LeetCode</strong>
+                            <span>vaibhav_sarda</span>
+                            <p>problem solving practice</p>
+                        </div>
+
+                        <span class="social-card__circle"></span>
+                    </a>
+
+
+                    <button
+                        class="social-card social-card--email reveal"
+                        type="button"
+                        data-email-copy
+                        data-cursor="COPY"
+                        data-social-card
+                    >
+                        <div class="social-card__top">
+                            <span class="social-card__icon">
+                                @
+                            </span>
+
+                            <span>
+                                +
+                            </span>
+                        </div>
+
+                        <div class="social-card__body">
+                            <strong>Email</strong>
+                            <span>devvaibhav37@gmail.com</span>
+                            <p id="emailCardText">
+                                click to copy
+                            </p>
+                        </div>
+
+                        <span class="social-card__circle"></span>
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <section
+            class="closing section"
+            id="contact"
+            data-section="05"
+        >
+
+            <div class="closing__orbits" aria-hidden="true">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+
+            <div class="shell closing__content">
+
+                <div class="section-head section-head--center reveal">
+                    <p>05 / 05</p>
+                    <span>say hello</span>
+                </div>
+
+
+                <p class="closing__eyebrow reveal">
+                    got something interesting in mind
+                </p>
+
+
+                <h2
+                    class="closing__title reveal"
+                    data-scramble
+                >
+                    <span>let's build</span>
+                    <span>something</span>
+                    <span>weird</span>
                 </h2>
 
 
-                <p class="contact__description">
+                <button
+                    class="email-button reveal"
+                    type="button"
+                    data-email-copy
+                    data-cursor="COPY"
+                >
+                    <span id="mainEmailText">
+                        devvaibhav37@gmail.com
+                    </span>
 
-                    Have something interesting in mind?
-                    I'm always up for a good idea,
-                    weird project, or conversation.
+                    <span>
+                        ↗
+                    </span>
+                </button>
 
+
+                <p class="closing__note reveal">
+                    ideas, experiments, projects, or just say hi
                 </p>
 
 
                 <a
-                    href="mailto:devvaibhav37@gmail.com?subject=Hey%20Vaibhav"
-                    class="contact__button"
+                    href="#home"
+                    class="back-top reveal"
+                    data-cursor="TOP"
                 >
-
-                    <span>
-                        devvaibhav37@gmail.com
-                    </span>
-
-                    <b>
-                        ↗
-                    </b>
-
+                    back to top
+                    <span>↑</span>
                 </a>
 
             </div>
@@ -717,59 +956,73 @@
     </main>
 
 
-
-    <!-- =========================================================
-         FOOTER
-         ========================================================= -->
-
     <footer class="footer">
 
-        <div class="footer__top">
+        <div class="shell footer__inner">
 
-            <span class="footer__logo">
-                V.
-            </span>
-
+            <div class="footer__identity">
+                <span></span>
+                <p>Developer Vaibhav</p>
+            </div>
 
             <p>
-                just a guy turning random thoughts
-                into random projects
+                @devvaibhav37
             </p>
 
-
-            <a href="#home">
-                back to top ↑
-            </a>
-
-        </div>
-
-
-        <div class="footer__bottom">
-
-            <span>
-                © 2026 devvaibhav37
-            </span>
-
-            <span>
-                built with curiosity
-            </span>
-
-            <span>
-                india
-            </span>
+            <p>
+                © 2026
+            </p>
 
         </div>
 
     </footer>
 
 
+    <div
+        class="external-transition"
+        id="externalTransition"
+        aria-hidden="true"
+    >
+        <div>
+            <span>
+                leaving this little corner of the internet
+            </span>
 
-    <!-- =========================================================
-         JAVASCRIPT
-         ========================================================= -->
+            <strong id="externalTransitionText">
+                opening
+            </strong>
+
+            <i>
+                ↗
+            </i>
+        </div>
+    </div>
+
+
+    <div
+        class="toast"
+        id="toast"
+        role="status"
+        aria-live="polite"
+    ></div>
+
+
+    <div
+        class="secret-screen"
+        id="secretScreen"
+        aria-hidden="true"
+    >
+        <span>
+            secret mode unlocked
+        </span>
+
+        <strong>
+            you really kept clicking it
+        </strong>
+    </div>
+
 
     <script src="script.js"></script>
 
 </body>
-
 </html>

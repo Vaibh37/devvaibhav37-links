@@ -1,426 +1,155 @@
-/* ================================================================
-   DEVVAIBHAV37 — SCRIPT.JS
-   INTERACTIONS / ANIMATIONS / UX
-   ================================================================ */
-
 (() => {
     "use strict";
 
 
-    /* ============================================================
-       01 — DOM
-       ============================================================ */
+    const body =
+        document.body;
 
-    const body = document.body;
-    const nav = document.querySelector(".nav");
+    const root =
+        document.documentElement;
 
-    const cursor = document.querySelector(".cursor");
-    const cursorDot = document.querySelector(".cursor__dot");
-    const cursorRing = document.querySelector(".cursor__ring");
+    const reduceMotion =
+        window.matchMedia(
+            "(prefers-reduced-motion: reduce)"
+        ).matches;
 
-    const heroVisual = document.querySelector(".hero__visual");
-
-    const interactiveElements = document.querySelectorAll(
-        "a, button, .social-card, .hero__image-wrap"
-    );
-
-    const sections = document.querySelectorAll(
-        "section[id]"
-    );
+    const touchDevice =
+        window.matchMedia(
+            "(pointer: coarse)"
+        ).matches ||
+        "ontouchstart" in window;
 
 
-    /* ============================================================
-       02 — DEVICE / MOTION
-       ============================================================ */
+    /* LOADER */
 
-    const reducedMotionQuery = window.matchMedia(
-        "(prefers-reduced-motion: reduce)"
-    );
-
-    const touchQuery = window.matchMedia(
-        "(hover: none), (pointer: coarse)"
-    );
-
-    const state = {
-        reducedMotion: reducedMotionQuery.matches,
-        touchDevice: touchQuery.matches
-    };
-
-
-    const updateMotionState = () => {
-
-        state.reducedMotion =
-            reducedMotionQuery.matches;
-
-        state.touchDevice =
-            touchQuery.matches;
-
-    };
-
-
-    updateMotionState();
-
-
-    if (
-        typeof reducedMotionQuery.addEventListener ===
-        "function"
-    ) {
-
-        reducedMotionQuery.addEventListener(
-            "change",
-            updateMotionState
+    const loader =
+        document.getElementById(
+            "loader"
         );
 
-        touchQuery.addEventListener(
-            "change",
-            updateMotionState
+    const loaderBar =
+        document.getElementById(
+            "loaderBar"
         );
 
-    } else {
-
-        reducedMotionQuery.addListener(
-            updateMotionState
+    const loaderNumber =
+        document.getElementById(
+            "loaderNumber"
         );
 
-        touchQuery.addListener(
-            updateMotionState
-        );
 
-    }
-
-
-    /* ============================================================
-       03 — PAGE READY
-       ============================================================ */
-
-    const markReady = () => {
-
-        document.documentElement.classList.add(
-            "is-ready"
-        );
-
-        body.classList.add(
-            "is-ready"
-        );
-
-    };
-
-
-    if (
-        document.readyState === "loading"
-    ) {
-
-        document.addEventListener(
-            "DOMContentLoaded",
-            markReady,
-            { once: true }
-        );
-
-    } else {
-
-        markReady();
-
-    }
-
-
-    /* ============================================================
-       04 — NAVIGATION
-       ============================================================ */
-
-    let lastScrollY = window.scrollY;
-
-
-    const updateNavigation = () => {
-
-        const currentScroll =
-            window.scrollY;
-
-
-        if (currentScroll > 40) {
-
-            nav?.classList.add(
-                "nav--scrolled"
+    function runLoader() {
+        if (
+            !loader ||
+            reduceMotion
+        ) {
+            loader?.classList.add(
+                "is-hidden"
             );
 
-        } else {
-
-            nav?.classList.remove(
-                "nav--scrolled"
-            );
-
+            return;
         }
 
 
-        lastScrollY =
-            currentScroll;
-
-    };
+        let progress = 0;
 
 
-    updateNavigation();
+        const timer =
+            setInterval(() => {
+
+                progress +=
+                    Math.floor(
+                        Math.random() * 13
+                    ) + 6;
 
 
-    window.addEventListener(
-        "scroll",
-        updateNavigation,
-        {
-            passive: true
-        }
-    );
-
-
-    /* ============================================================
-       05 — SMOOTH ANCHOR LINKS
-       ============================================================ */
-
-    const anchorLinks =
-        document.querySelectorAll(
-            'a[href^="#"]'
-        );
-
-
-    anchorLinks.forEach((link) => {
-
-        link.addEventListener(
-            "click",
-            (event) => {
-
-                const targetId =
-                    link.getAttribute("href");
-
-
-                if (
-                    !targetId ||
-                    targetId === "#"
-                ) {
-                    return;
+                if (progress >= 100) {
+                    progress = 100;
                 }
 
 
-                const target =
-                    document.querySelector(
-                        targetId
-                    );
-
-
-                if (!target) {
-                    return;
+                if (loaderBar) {
+                    loaderBar.style.width =
+                        `${progress}%`;
                 }
 
 
-                event.preventDefault();
+                if (loaderNumber) {
+                    loaderNumber.textContent =
+                        String(progress)
+                            .padStart(
+                                2,
+                                "0"
+                            );
+                }
 
 
-                const navHeight =
-                    nav?.offsetHeight || 0;
+                if (progress >= 100) {
+
+                    clearInterval(timer);
 
 
-                const targetPosition =
-                    target.getBoundingClientRect()
-                        .top
-                    +
-                    window.scrollY
-                    -
-                    navHeight
-                    -
-                    15;
-
-
-                if (state.reducedMotion) {
-
-                    window.scrollTo(
-                        0,
-                        targetPosition
-                    );
-
-                } else {
-
-                    window.scrollTo({
-                        top: targetPosition,
-                        behavior: "smooth"
-                    });
+                    setTimeout(() => {
+                        loader.classList.add(
+                            "is-hidden"
+                        );
+                    }, 220);
 
                 }
 
+            }, 70);
+    }
+
+
+    if (
+        document.readyState ===
+        "complete"
+    ) {
+        runLoader();
+    } else {
+        window.addEventListener(
+            "load",
+            runLoader,
+            {
+                once: true
             }
         );
-
-    });
-
-
-    /* ============================================================
-       06 — ACTIVE NAV LINK
-       ============================================================ */
-
-    const navLinks =
-        document.querySelectorAll(
-            ".nav__links a"
-        );
-
-
-    const updateActiveSection = () => {
-
-        let currentSection = "";
-
-
-        sections.forEach((section) => {
-
-            const sectionTop =
-                section.offsetTop
-                -
-                window.innerHeight * 0.35;
-
-
-            if (
-                window.scrollY >= sectionTop
-            ) {
-
-                currentSection =
-                    section.id;
-
-            }
-
-        });
-
-
-        navLinks.forEach((link) => {
-
-            const target =
-                link.getAttribute("href");
-
-
-            link.classList.toggle(
-                "is-active",
-                target ===
-                `#${currentSection}`
-            );
-
-        });
-
-    };
-
-
-    updateActiveSection();
-
-
-    window.addEventListener(
-        "scroll",
-        updateActiveSection,
-        {
-            passive: true
-        }
-    );
-
-
-    /* ============================================================
-       07 — SCROLL REVEAL
-       ============================================================ */
-
-    if (
-        !state.reducedMotion &&
-        "IntersectionObserver" in window
-    ) {
-
-        const revealElements = document.querySelectorAll(
-            ".section-label, .about__content, .social__intro, .social-card, .contact__inner"
-        );
-
-
-        revealElements.forEach((element) => {
-
-            element.classList.add(
-                "will-reveal"
-            );
-
-        });
-
-
-        const revealObserver =
-            new IntersectionObserver(
-                (entries, observer) => {
-
-                    entries.forEach((entry) => {
-
-                        if (
-                            !entry.isIntersecting
-                        ) {
-                            return;
-                        }
-
-
-                        entry.target.classList.add(
-                            "is-visible"
-                        );
-
-
-                        observer.unobserve(
-                            entry.target
-                        );
-
-                    });
-
-                },
-                {
-                    threshold: 0.12,
-                    rootMargin:
-                        "0px 0px -50px 0px"
-                }
-            );
-
-
-        revealElements.forEach((element) => {
-
-            revealObserver.observe(
-                element
-            );
-
-        });
-
-    } else {
-
-        document
-            .querySelectorAll(
-                ".section-label, .about__content, .social__intro, .social-card, .contact__inner"
-            )
-            .forEach((element) => {
-
-                element.classList.add(
-                    "will-reveal",
-                    "is-visible"
-                );
-
-            });
-
     }
 
 
-    /* ============================================================
-       08 — CUSTOM CURSOR
-       ============================================================ */
+    /* CURSOR */
 
-    if (
-        cursor &&
-        cursorDot &&
-        cursorRing &&
-        !state.touchDevice &&
-        !state.reducedMotion
-    ) {
+    const cursor =
+        document.getElementById(
+            "cursor"
+        );
 
-        body.classList.add(
-            "cursor-active"
+    const cursorLabel =
+        document.getElementById(
+            "cursorLabel"
+        );
+
+    const pointerLight =
+        document.getElementById(
+            "pointerLight"
         );
 
 
-        let mouseX = 0;
-        let mouseY = 0;
+    let mouseX = -100;
+    let mouseY = -100;
 
-        let ringX = 0;
-        let ringY = 0;
+    let cursorX = -100;
+    let cursorY = -100;
 
+
+    if (
+        !touchDevice &&
+        cursor
+    ) {
 
         window.addEventListener(
-            "mousemove",
-            (event) => {
+            "pointermove",
+            event => {
 
                 mouseX =
                     event.clientX;
@@ -429,260 +158,403 @@
                     event.clientY;
 
 
-                cursorDot.style.transform =
-                    `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%)`;
+                root.style.setProperty(
+                    "--pointer-x",
+                    `${mouseX}px`
+                );
 
+                root.style.setProperty(
+                    "--pointer-y",
+                    `${mouseY}px`
+                );
+
+            },
+            {
+                passive: true
             }
         );
 
 
-        const animateCursor = () => {
+        function animateCursor() {
 
-            ringX +=
-                (mouseX - ringX) * 0.14;
+            cursorX +=
+                (mouseX - cursorX) *
+                0.22;
 
-            ringY +=
-                (mouseY - ringY) * 0.14;
+            cursorY +=
+                (mouseY - cursorY) *
+                0.22;
 
 
-            cursorRing.style.transform =
-                `translate3d(${ringX}px, ${ringY}px, 0) translate(-50%, -50%)`;
+            root.style.setProperty(
+                "--cursor-x",
+                `${cursorX}px`
+            );
+
+            root.style.setProperty(
+                "--cursor-y",
+                `${cursorY}px`
+            );
 
 
             requestAnimationFrame(
                 animateCursor
             );
-
-        };
+        }
 
 
         animateCursor();
 
 
-        interactiveElements.forEach(
-            (element) => {
+        document
+            .querySelectorAll(
+                "[data-cursor]"
+            )
+            .forEach(element => {
 
                 element.addEventListener(
-                    "mouseenter",
+                    "pointerenter",
                     () => {
 
-                        body.classList.add(
-                            "cursor-hover"
+                        const label =
+                            element.dataset.cursor;
+
+
+                        cursor.classList.add(
+                            "is-active"
                         );
+
+
+                        if (
+                            label &&
+                            cursorLabel
+                        ) {
+
+                            cursorLabel.textContent =
+                                label.toUpperCase();
+
+                            cursor.classList.add(
+                                "has-label"
+                            );
+
+                        }
 
                     }
                 );
 
 
                 element.addEventListener(
-                    "mouseleave",
+                    "pointerleave",
                     () => {
 
-                        body.classList.remove(
-                            "cursor-hover"
+                        cursor.classList.remove(
+                            "is-active",
+                            "has-label"
                         );
+
+
+                        if (cursorLabel) {
+                            cursorLabel.textContent =
+                                "";
+                        }
 
                     }
                 );
 
-            }
+            });
+
+    } else {
+
+        cursor?.remove();
+        pointerLight?.remove();
+
+    }
+
+
+    /* REVEALS */
+
+    const revealElements =
+        document.querySelectorAll(
+            ".reveal"
         );
 
 
-        window.addEventListener(
-            "mouseleave",
-            () => {
+    if (
+        "IntersectionObserver"
+        in window &&
+        !reduceMotion
+    ) {
 
-                body.classList.remove(
-                    "cursor-active"
+        const revealObserver =
+            new IntersectionObserver(
+                entries => {
+
+                    entries.forEach(
+                        entry => {
+
+                            if (
+                                !entry.isIntersecting
+                            ) {
+                                return;
+                            }
+
+
+                            entry.target.classList.add(
+                                "is-visible"
+                            );
+
+
+                            revealObserver.unobserve(
+                                entry.target
+                            );
+
+                        }
+                    );
+
+                },
+                {
+                    threshold: 0.13
+                }
+            );
+
+
+        revealElements.forEach(
+            element => {
+                revealObserver.observe(
+                    element
                 );
-
             }
         );
 
+    } else {
 
-        window.addEventListener(
-            "mouseenter",
-            () => {
-
-                body.classList.add(
-                    "cursor-active"
+        revealElements.forEach(
+            element => {
+                element.classList.add(
+                    "is-visible"
                 );
-
             }
         );
 
     }
 
 
-    /* ============================================================
-       09 — HERO PARALLAX
-       ============================================================ */
+    /* HEADING SCRAMBLE */
 
-    if (
-        heroVisual &&
-        !state.touchDevice &&
-        !state.reducedMotion
-    ) {
-
-        let targetX = 0;
-        let targetY = 0;
-
-        let currentX = 0;
-        let currentY = 0;
+    const scrambleChars =
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
 
-        window.addEventListener(
-            "mousemove",
-            (event) => {
+    function scramble(element) {
 
-                const x =
-                    (event.clientX /
-                        window.innerWidth
-                    )
-                    -
-                    0.5;
-
-
-                const y =
-                    (event.clientY /
-                        window.innerHeight
-                    )
-                    -
-                    0.5;
+        if (
+            reduceMotion ||
+            element.dataset.scrambled ===
+            "true"
+        ) {
+            return;
+        }
 
 
-                targetX =
-                    x * 12;
-
-                targetY =
-                    y * 10;
-
-            }
-        );
+        element.dataset.scrambled =
+            "true";
 
 
-        const animateHeroParallax =
-            () => {
-
-                currentX +=
-                    (targetX - currentX)
-                    * 0.06;
-
-                currentY +=
-                    (targetY - currentY)
-                    * 0.06;
+        const original =
+            element.textContent;
 
 
-                heroVisual.style.transform =
-                    `translate3d(${currentX}px, ${currentY}px, 0)`;
+        let frame = 0;
+        const total = 17;
 
 
-                requestAnimationFrame(
-                    animateHeroParallax
-                );
+        const interval =
+            setInterval(() => {
 
-            };
+                const ratio =
+                    frame / total;
 
 
-        animateHeroParallax();
+                element.textContent =
+                    original
+                        .split("")
+                        .map(
+                            (
+                                character,
+                                index
+                            ) => {
+
+                                if (
+                                    character === " " ||
+                                    character === "\n"
+                                ) {
+                                    return character;
+                                }
+
+
+                                if (
+                                    index /
+                                    original.length <
+                                    ratio
+                                ) {
+                                    return character;
+                                }
+
+
+                                return scrambleChars[
+                                    Math.floor(
+                                        Math.random() *
+                                        scrambleChars.length
+                                    )
+                                ];
+
+                            }
+                        )
+                        .join("");
+
+
+                frame += 1;
+
+
+                if (frame > total) {
+
+                    clearInterval(
+                        interval
+                    );
+
+                    element.textContent =
+                        original;
+
+                }
+
+            }, 32);
 
     }
 
 
-    /* ============================================================
-       10 — IMAGE TILT
-       ============================================================ */
-
-    const imageWrap =
-        document.querySelector(
-            ".hero__image-wrap"
+    const scrambleElements =
+        document.querySelectorAll(
+            "[data-scramble]"
         );
 
 
     if (
-        imageWrap &&
-        !state.touchDevice &&
-        !state.reducedMotion
+        "IntersectionObserver"
+        in window
     ) {
 
-        imageWrap.addEventListener(
-            "mousemove",
-            (event) => {
+        const scrambleObserver =
+            new IntersectionObserver(
+                entries => {
+
+                    entries.forEach(
+                        entry => {
+
+                            if (
+                                !entry.isIntersecting
+                            ) {
+                                return;
+                            }
+
+
+                            scramble(
+                                entry.target
+                            );
+
+
+                            scrambleObserver.unobserve(
+                                entry.target
+                            );
+
+                        }
+                    );
+
+                },
+                {
+                    threshold: 0.5
+                }
+            );
+
+
+        scrambleElements.forEach(
+            element => {
+                scrambleObserver.observe(
+                    element
+                );
+            }
+        );
+
+    }
+
+
+    /* PROFILE TILT */
+
+    const profileStage =
+        document.getElementById(
+            "profileStage"
+        );
+
+
+    if (
+        profileStage &&
+        !touchDevice &&
+        !reduceMotion
+    ) {
+
+        profileStage.addEventListener(
+            "pointermove",
+            event => {
 
                 const rect =
-                    imageWrap.getBoundingClientRect();
+                    profileStage
+                        .getBoundingClientRect();
 
 
                 const x =
-                    event.clientX -
-                    rect.left;
+                    (
+                        event.clientX -
+                        rect.left
+                    ) /
+                    rect.width;
 
 
                 const y =
-                    event.clientY -
-                    rect.top;
+                    (
+                        event.clientY -
+                        rect.top
+                    ) /
+                    rect.height;
 
 
-                const centerX =
-                    rect.width / 2;
+                profileStage.style.setProperty(
+                    "--profile-ry",
+                    `${(x - 0.5) * 6}deg`
+                );
 
 
-                const centerY =
-                    rect.height / 2;
-
-
-                const rotateX =
-                    ((y - centerY) /
-                        centerY
-                    ) * -4;
-
-
-                const rotateY =
-                    ((x - centerX) /
-                        centerX
-                    ) * 5;
-
-
-                const image =
-                    imageWrap.querySelector(
-                        ".hero__image"
-                    );
-
-
-                if (!image) {
-                    return;
-                }
-
-
-                image.style.transform =
-                    `perspective(700px)
-                     rotateX(${rotateX}deg)
-                     rotateY(${rotateY}deg)
-                     rotateZ(2deg)
-                     scale(1.02)`;
+                profileStage.style.setProperty(
+                    "--profile-rx",
+                    `${(0.5 - y) * 6}deg`
+                );
 
             }
         );
 
 
-        imageWrap.addEventListener(
-            "mouseleave",
+        profileStage.addEventListener(
+            "pointerleave",
             () => {
 
-                const image =
-                    imageWrap.querySelector(
-                        ".hero__image"
-                    );
+                profileStage.style.setProperty(
+                    "--profile-rx",
+                    "0deg"
+                );
 
 
-                if (!image) {
-                    return;
-                }
-
-
-                image.style.transform =
-                    "";
+                profileStage.style.setProperty(
+                    "--profile-ry",
+                    "0deg"
+                );
 
             }
         );
@@ -690,62 +562,233 @@
     }
 
 
-    /* ============================================================
-       11 — SOCIAL CARD MAGNETIC EFFECT
-       ============================================================ */
+    /* TILT CARDS */
+
+    document
+        .querySelectorAll(
+            "[data-tilt-card]"
+        )
+        .forEach(card => {
+
+            if (
+                touchDevice ||
+                reduceMotion
+            ) {
+                return;
+            }
+
+
+            card.addEventListener(
+                "pointermove",
+                event => {
+
+                    const rect =
+                        card.getBoundingClientRect();
+
+
+                    const x =
+                        (
+                            event.clientX -
+                            rect.left
+                        ) /
+                        rect.width;
+
+
+                    const y =
+                        (
+                            event.clientY -
+                            rect.top
+                        ) /
+                        rect.height;
+
+
+                    card.style.setProperty(
+                        "--ry",
+                        `${(x - 0.5) * 7}deg`
+                    );
+
+
+                    card.style.setProperty(
+                        "--rx",
+                        `${(0.5 - y) * 7}deg`
+                    );
+
+                }
+            );
+
+
+            card.addEventListener(
+                "pointerleave",
+                () => {
+
+                    card.style.setProperty(
+                        "--rx",
+                        "0deg"
+                    );
+
+
+                    card.style.setProperty(
+                        "--ry",
+                        "0deg"
+                    );
+
+                }
+            );
+
+        });
+
+
+    /* PROJECT TILT */
+
+    const projectCard =
+        document.getElementById(
+            "projectCard"
+        );
+
 
     if (
-        !state.touchDevice &&
-        !state.reducedMotion
+        projectCard &&
+        !touchDevice &&
+        !reduceMotion
+    ) {
+
+        projectCard.addEventListener(
+            "pointermove",
+            event => {
+
+                const rect =
+                    projectCard
+                        .getBoundingClientRect();
+
+
+                const x =
+                    (
+                        event.clientX -
+                        rect.left
+                    ) /
+                    rect.width;
+
+
+                const y =
+                    (
+                        event.clientY -
+                        rect.top
+                    ) /
+                    rect.height;
+
+
+                projectCard.style.setProperty(
+                    "--ry",
+                    `${(x - 0.5) * 4.5}deg`
+                );
+
+
+                projectCard.style.setProperty(
+                    "--rx",
+                    `${(0.5 - y) * 4.5}deg`
+                );
+
+            }
+        );
+
+
+        projectCard.addEventListener(
+            "pointerleave",
+            () => {
+
+                projectCard.style.setProperty(
+                    "--rx",
+                    "0deg"
+                );
+
+
+                projectCard.style.setProperty(
+                    "--ry",
+                    "0deg"
+                );
+
+            }
+        );
+
+    }
+
+
+    /* SOCIAL MAGNETISM */
+
+    if (
+        !touchDevice &&
+        !reduceMotion
     ) {
 
         document
-            .querySelectorAll(".social-card")
-            .forEach((card) => {
+            .querySelectorAll(
+                "[data-social-card]"
+            )
+            .forEach(card => {
 
                 card.addEventListener(
-                    "mousemove",
-                    (event) => {
+                    "pointermove",
+                    event => {
 
                         const rect =
                             card.getBoundingClientRect();
 
 
+                        const centerX =
+                            rect.left +
+                            rect.width / 2;
+
+
+                        const centerY =
+                            rect.top +
+                            rect.height / 2;
+
+
                         const x =
-                            event.clientX -
-                            rect.left;
+                            (
+                                event.clientX -
+                                centerX
+                            ) *
+                            0.018;
 
 
                         const y =
-                            event.clientY -
-                            rect.top;
+                            (
+                                event.clientY -
+                                centerY
+                            ) *
+                            0.018;
 
 
-                        const moveX =
-                            (x -
-                                rect.width / 2
-                            ) * 0.025;
+                        card.style.setProperty(
+                            "--x",
+                            `${x}px`
+                        );
 
 
-                        const moveY =
-                            (y -
-                                rect.height / 2
-                            ) * 0.025;
-
-
-                        card.style.transform =
-                            `translate3d(${moveX}px, ${moveY - 7}px, 0)`;
+                        card.style.setProperty(
+                            "--y",
+                            `${y}px`
+                        );
 
                     }
                 );
 
 
                 card.addEventListener(
-                    "mouseleave",
+                    "pointerleave",
                     () => {
 
-                        card.style.transform =
-                            "";
+                        card.style.setProperty(
+                            "--x",
+                            "0px"
+                        );
+
+
+                        card.style.setProperty(
+                            "--y",
+                            "0px"
+                        );
 
                     }
                 );
@@ -755,140 +798,542 @@
     }
 
 
-    /* ============================================================
-       12 — EMAIL FEEDBACK
-       ============================================================ */
+    /* SCROLL PROGRESS */
 
-    const emailLinks =
-        document.querySelectorAll(
-            'a[href^="mailto:"]'
+    const scrollThread =
+        document.getElementById(
+            "scrollThread"
         );
 
 
-    emailLinks.forEach((link) => {
+    function updateScroll() {
 
-        link.addEventListener(
-            "click",
-            () => {
+        const total =
+            document.documentElement
+                .scrollHeight -
+            window.innerHeight;
 
-                link.classList.add(
-                    "email-clicked"
+
+        const progress =
+            total > 0
+                ? window.scrollY / total
+                : 0;
+
+
+        if (scrollThread) {
+
+            scrollThread.style.transform =
+                `scaleY(${Math.min(
+                    Math.max(
+                        progress,
+                        0
+                    ),
+                    1
+                )})`;
+
+        }
+
+    }
+
+
+    window.addEventListener(
+        "scroll",
+        updateScroll,
+        {
+            passive: true
+        }
+    );
+
+
+    updateScroll();
+
+
+    /* SECTION INDEX */
+
+    const currentSection =
+        document.getElementById(
+            "sectionCurrent"
+        );
+
+
+    const sections =
+        document.querySelectorAll(
+            "[data-section]"
+        );
+
+
+    if (
+        currentSection &&
+        "IntersectionObserver"
+        in window
+    ) {
+
+        const sectionObserver =
+            new IntersectionObserver(
+                entries => {
+
+                    entries.forEach(
+                        entry => {
+
+                            if (
+                                !entry.isIntersecting
+                            ) {
+                                return;
+                            }
+
+
+                            currentSection.textContent =
+                                entry.target
+                                    .dataset
+                                    .section;
+
+                        }
+                    );
+
+                },
+                {
+                    threshold: 0.45
+                }
+            );
+
+
+        sections.forEach(
+            section => {
+                sectionObserver.observe(
+                    section
                 );
+            }
+        );
+
+    }
 
 
-                window.setTimeout(
-                    () => {
+    /* EXTERNAL LINK TRANSITION */
 
-                        link.classList.remove(
-                            "email-clicked"
+    const externalTransition =
+        document.getElementById(
+            "externalTransition"
+        );
+
+
+    const externalTransitionText =
+        document.getElementById(
+            "externalTransitionText"
+        );
+
+
+    document
+        .querySelectorAll(
+            ".external-link"
+        )
+        .forEach(link => {
+
+            link.addEventListener(
+                "click",
+                event => {
+
+                    if (
+                        event.ctrlKey ||
+                        event.metaKey ||
+                        event.shiftKey ||
+                        event.altKey
+                    ) {
+                        return;
+                    }
+
+
+                    const href =
+                        link.getAttribute(
+                            "href"
                         );
 
-                    },
-                    1200
-                );
 
-            }
-        );
-
-    });
+                    if (!href) {
+                        return;
+                    }
 
 
-    /* ============================================================
-       13 — KEYBOARD ACCESSIBILITY
-       ============================================================ */
-
-    document.addEventListener(
-        "keydown",
-        (event) => {
-
-            if (
-                event.key === "Escape"
-            ) {
-
-                body.classList.remove(
-                    "cursor-hover"
-                );
-
-            }
-
-        }
-    );
+                    event.preventDefault();
 
 
-    /* ============================================================
-       14 — PAGE VISIBILITY
-       ============================================================ */
+                    if (
+                        externalTransitionText
+                    ) {
 
-    document.addEventListener(
-        "visibilitychange",
+                        externalTransitionText
+                            .textContent =
+                            link.dataset
+                                .externalName ||
+                            "opening";
+
+                    }
+
+
+                    externalTransition
+                        ?.classList
+                        .add(
+                            "is-active"
+                        );
+
+
+                    const delay =
+                        reduceMotion
+                            ? 20
+                            : 410;
+
+
+                    setTimeout(
+                        () => {
+
+                            window.location.href =
+                                href;
+
+                        },
+                        delay
+                    );
+
+                }
+            );
+
+        });
+
+
+    window.addEventListener(
+        "pageshow",
         () => {
 
-            if (
-                document.hidden
-            ) {
-
-                document.documentElement
-                    .classList.add(
-                        "page-hidden"
-                    );
-
-            } else {
-
-                document.documentElement
-                    .classList.remove(
-                        "page-hidden"
-                    );
-
-            }
+            externalTransition
+                ?.classList
+                .remove(
+                    "is-active"
+                );
 
         }
     );
 
 
-    /* ============================================================
-       15 — CONSOLE EASTER EGG
-       ============================================================ */
+    /* EMAIL COPY */
 
-    console.log(
-        "%c devvaibhav37 ",
-        "background:#7667f8;color:white;padding:8px 12px;border-radius:8px;font-weight:800;"
+    const toast =
+        document.getElementById(
+            "toast"
+        );
+
+
+    let toastTimer;
+
+
+    function showToast(
+        message
+    ) {
+
+        if (!toast) {
+            return;
+        }
+
+
+        clearTimeout(
+            toastTimer
+        );
+
+
+        toast.textContent =
+            message;
+
+
+        toast.classList.add(
+            "is-visible"
+        );
+
+
+        toastTimer =
+            setTimeout(
+                () => {
+
+                    toast.classList.remove(
+                        "is-visible"
+                    );
+
+                },
+                1800
+            );
+
+    }
+
+
+    async function copyEmail() {
+
+        const email =
+            "devvaibhav37@gmail.com";
+
+
+        try {
+
+            await navigator
+                .clipboard
+                .writeText(
+                    email
+                );
+
+
+            showToast(
+                "copied. don't make it boring."
+            );
+
+
+            const emailCardText =
+                document.getElementById(
+                    "emailCardText"
+                );
+
+
+            const mainEmailText =
+                document.getElementById(
+                    "mainEmailText"
+                );
+
+
+            if (emailCardText) {
+
+                const original =
+                    emailCardText
+                        .textContent;
+
+
+                emailCardText.textContent =
+                    "copied";
+
+
+                setTimeout(
+                    () => {
+
+                        emailCardText.textContent =
+                            original;
+
+                    },
+                    1400
+                );
+
+            }
+
+
+            if (mainEmailText) {
+
+                const original =
+                    mainEmailText
+                        .textContent;
+
+
+                mainEmailText.textContent =
+                    "copied to clipboard";
+
+
+                setTimeout(
+                    () => {
+
+                        mainEmailText.textContent =
+                            original;
+
+                    },
+                    1400
+                );
+
+            }
+
+        } catch {
+
+            window.location.href =
+                `mailto:${email}`;
+
+        }
+
+    }
+
+
+    document
+        .querySelectorAll(
+            "[data-email-copy]"
+        )
+        .forEach(button => {
+
+            button.addEventListener(
+                "click",
+                copyEmail
+            );
+
+        });
+
+
+    /* MOTION TOGGLE */
+
+    const motionToggle =
+        document.getElementById(
+            "motionToggle"
+        );
+
+
+    motionToggle?.addEventListener(
+        "click",
+        () => {
+
+            body.classList.toggle(
+                "motion-off"
+            );
+
+
+            const disabled =
+                body.classList.contains(
+                    "motion-off"
+                );
+
+
+            showToast(
+                disabled
+                    ? "motion off"
+                    : "motion on"
+            );
+
+        }
     );
 
-    console.log(
-        "%c just a guy turning random thoughts into random projects :) ",
-        "color:#647087;font-size:12px;"
-    );
+
+    /* SECRET */
+
+    const secretTrigger =
+        document.getElementById(
+            "secretTrigger"
+        );
 
 
-    /* ============================================================
-       16 — GLOBAL DEBUG OBJECT
-       ============================================================ */
-
-    window.DevVaibhav37 = {
-
-        state,
-
-        scrollTo: (id) => {
-
-            const element =
-                document.querySelector(id);
+    const secretScreen =
+        document.getElementById(
+            "secretScreen"
+        );
 
 
-            if (!element) {
+    const secretMessages = [
+        "why",
+        "bro",
+        "still clicking",
+        "okay",
+        "fine"
+    ];
+
+
+    let secretCount = 0;
+
+
+    secretTrigger?.addEventListener(
+        "click",
+        event => {
+
+            event.preventDefault();
+
+
+            secretCount += 1;
+
+
+            showToast(
+                secretMessages[
+                    Math.min(
+                        secretCount - 1,
+                        secretMessages.length - 1
+                    )
+                ]
+            );
+
+
+            if (
+                secretCount <
+                secretMessages.length
+            ) {
                 return;
             }
 
 
-            element.scrollIntoView({
-                behavior:
-                    state.reducedMotion
-                        ? "auto"
-                        : "smooth"
-            });
+            secretCount = 0;
+
+
+            secretScreen
+                ?.classList
+                .add(
+                    "is-active"
+                );
+
+
+            setTimeout(
+                () => {
+
+                    secretScreen
+                        ?.classList
+                        .remove(
+                            "is-active"
+                        );
+
+                },
+                1600
+            );
 
         }
+    );
 
-    };
+
+    /* SMOOTH INTERNAL LINKS */
+
+    document
+        .querySelectorAll(
+            'a[href^="#"]'
+        )
+        .forEach(link => {
+
+            link.addEventListener(
+                "click",
+                event => {
+
+                    const targetId =
+                        link.getAttribute(
+                            "href"
+                        );
+
+
+                    if (
+                        !targetId ||
+                        targetId === "#"
+                    ) {
+                        return;
+                    }
+
+
+                    const target =
+                        document.querySelector(
+                            targetId
+                        );
+
+
+                    if (!target) {
+                        return;
+                    }
+
+
+                    event.preventDefault();
+
+
+                    target.scrollIntoView({
+                        behavior:
+                            body.classList.contains(
+                                "motion-off"
+                            ) ||
+                            reduceMotion
+                                ? "auto"
+                                : "smooth",
+                        block:
+                            "start"
+                    });
+
+                }
+            );
+
+        });
 
 
 })();
