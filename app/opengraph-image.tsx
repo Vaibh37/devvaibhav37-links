@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "Vaibhav — Rust, C++ & Software Engineering";
+export const alt = "Vaibhav — Software Developer";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -15,8 +15,8 @@ export default function Image() {
           flexDirection: "column",
           justifyContent: "space-between",
           padding: "72px 78px",
-          background: "#f7f9fc",
-          color: "#10213b",
+          background: "#f6f7f3",
+          color: "#171a1f",
           fontFamily: "Arial, sans-serif",
         }}
       >
@@ -24,58 +24,45 @@ export default function Image() {
           style={{
             display: "flex",
             justifyContent: "space-between",
-            alignItems: "center",
-            fontSize: 22,
+            fontSize: 20,
+            color: "#6f7785",
           }}
         >
-          <span style={{ fontWeight: 700 }}>VAIBHAV</span>
-          <span style={{ color: "#75839a" }}>SOFTWARE DEVELOPER</span>
+          <span>VAIBHAV</span>
+          <span>SOFTWARE DEVELOPER</span>
         </div>
 
         <div style={{ display: "flex", flexDirection: "column", gap: 22 }}>
           <div
             style={{
-              fontSize: 82,
-              lineHeight: 0.95,
+              maxWidth: 900,
+              fontSize: 74,
+              lineHeight: 1.02,
               fontWeight: 700,
-              letterSpacing: -5,
+              letterSpacing: -4,
             }}
           >
-            Rust & C++
+            Rust & C++ at the core.
           </div>
-
           <div
             style={{
-              fontSize: 42,
-              color: "#42526c",
-              letterSpacing: -2,
+              fontSize: 34,
+              color: "#5b6471",
+              letterSpacing: -1.2,
             }}
           >
-            MERN for full-stack products.
+            MERN for full-stack web applications.
           </div>
-
-          <div
-            style={{
-              width: 520,
-              height: 12,
-              borderRadius: 999,
-              background:
-                "linear-gradient(90deg, #4f7cff 0%, #2ac7e8 52%, #3bd0a0 100%)",
-            }}
-          />
         </div>
 
         <div
           style={{
-            display: "flex",
-            justifyContent: "space-between",
-            fontSize: 20,
-            color: "#75839a",
+            width: 220,
+            height: 8,
+            borderRadius: 999,
+            background: "#3657ff",
           }}
-        >
-          <span>github.com/Vaibh37</span>
-          <span>2026</span>
-        </div>
+        />
       </div>
     ),
     size,

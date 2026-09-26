@@ -1,37 +1,51 @@
 # Vaibhav Portfolio
 
-A professional personal portfolio built with **Next.js**, **TypeScript**, and **Framer Motion**.
+A professional developer portfolio built with **Next.js**, **TypeScript**, and **Framer Motion**.
 
-## Direction
+## Design direction
 
-The site is designed around a clean, light visual system with a blue → cyan → mint accent palette.
+This version intentionally avoids the usual developer-portfolio clichés.
 
-The portfolio focuses on:
+The site uses:
+
+- a restrained off-white / charcoal / cobalt palette
+- a fixed profile rail on desktop
+- a normal rectangular portrait
+- real project screenshots
+- case-study style project sections
+- compact typography and controlled line lengths
+- subtle Framer Motion for entrance, reveal, image masking, and hover feedback
+- reduced-motion support
+- responsive mobile layouts
+
+## Focus
 
 - Rust
 - C++
-- MERN for full-stack products
-- real project screenshots
-- restrained but visible motion
-- responsive layouts
-- accessible reduced-motion behavior
+- DSA and backend fundamentals
+- MERN for full-stack web applications
 
-## Featured work
+## Selected work
 
 ### StudyOS
 
-A full-stack student productivity platform with tasks, notes, focus sessions, progress tracking, XP, streaks, and a leaderboard.
+A full-stack student productivity platform that combines tasks, notes, subjects, focus sessions, calendars, progress tracking, XP, streaks, and a leaderboard.
 
-**Stack:** React, Node.js, Express, MongoDB, Firebase
+**Frontend:** React, Vite, Firebase Authentication  
+**Backend:** Node.js, Express, MongoDB  
+**Local mode:** IndexedDB guest storage  
+**Deployment:** Vercel + Render
 
 - Live: https://studyos-one-omega.vercel.app/
 - Source: https://github.com/Vaibh37/Studyos
 
 ### QRify
 
-A lightweight client-side QR generator with customization and offline PWA support.
+A lightweight QR generator that works entirely in the browser and supports offline usage.
 
-**Stack:** JavaScript, Service Worker, Cache API, PWA
+**Core:** HTML, CSS, JavaScript  
+**Offline:** Service Worker + Cache API  
+**Features:** customization, contrast checks, PNG download, clipboard support
 
 - Source: https://github.com/Vaibh37/qrify
 
@@ -43,7 +57,7 @@ A lightweight client-side QR generator with customization and offline PWA suppor
 - Framer Motion
 - CSS
 
-## Run locally
+## Local development
 
 ```bash
 npm install
@@ -63,6 +77,6 @@ npm run build
 npm start
 ```
 
-## Deploy
+## Deployment
 
 Vercel-ready. No environment variables are required.

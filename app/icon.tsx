@@ -14,11 +14,10 @@ export default function Icon() {
           alignItems: "center",
           justifyContent: "center",
           borderRadius: 8,
-          background:
-            "linear-gradient(135deg, #4f7cff 0%, #2ac7e8 55%, #3bd0a0 100%)",
+          background: "#3657ff",
           color: "#ffffff",
-          fontSize: 18,
-          fontWeight: 800,
+          fontSize: 17,
+          fontWeight: 700,
         }}
       >
         V

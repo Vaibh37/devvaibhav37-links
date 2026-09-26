@@ -6,157 +6,155 @@ import {
   useReducedMotion,
   useScroll,
   useSpring,
-  useTransform,
 } from "framer-motion";
 import profileImage from "@/assets/profile.jpeg";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
-const stack = [
-  "Rust",
-  "C++",
-  "MongoDB",
-  "Express",
-  "React",
-  "Node.js",
-  "Docker",
-  "PostgreSQL",
-  "Git",
-  "Next.js",
-];
+const navigation = [
+  ["Work", "#work"],
+  ["About", "#about"],
+  ["Stack", "#stack"],
+  ["Contact", "#contact"],
+] as const;
 
 function Arrow() {
   return <span aria-hidden="true">↗</span>;
 }
 
+function Reveal({
+  children,
+  className = "",
+  delay = 0,
+}: {
+  children: React.ReactNode;
+  className?: string;
+  delay?: number;
+}) {
+  const reduceMotion = useReducedMotion();
+
+  return (
+    <motion.div
+      className={className}
+      initial={reduceMotion ? { opacity: 1 } : { opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.18 }}
+      transition={{ duration: 0.62, delay, ease }}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
 export default function Portfolio() {
   const reduceMotion = useReducedMotion();
   const { scrollYProgress } = useScroll();
-
   const progress = useSpring(scrollYProgress, {
-    stiffness: 100,
+    stiffness: 110,
     damping: 24,
-    mass: 0.45,
+    mass: 0.4,
   });
 
-  const portraitY = useTransform(progress, [0, 0.2], [0, 70]);
-  const heroWordY = useTransform(progress, [0, 0.2], [0, -90]);
-
-  const reveal = {
-    initial: reduceMotion ? { opacity: 1 } : { opacity: 0, y: 42 },
-    whileInView: { opacity: 1, y: 0 },
-    viewport: { once: true, amount: 0.2 },
-    transition: { duration: 0.75, ease },
-  };
-
   return (
-    <main className="experience">
+    <main className="portfolio-shell">
       <motion.div
-        className="scroll-line"
-        style={{ scaleY: progress }}
+        className="page-progress"
+        style={{ scaleX: progress }}
         aria-hidden="true"
       />
 
-      <div className="corner-id" aria-hidden="true">
-        <span>VS</span>
-        <small>2026</small>
-      </div>
+      <motion.aside
+        className="profile-rail"
+        initial={reduceMotion ? { opacity: 1 } : { opacity: 0, x: -24 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.72, ease }}
+      >
+        <div className="profile-top">
+          <div className="portrait-frame">
+            <Image
+              src={profileImage}
+              alt="Vaibhav"
+              priority
+              className="profile-photo"
+              sizes="(max-width: 900px) 220px, 260px"
+            />
+          </div>
 
-      <section className="opening" id="top">
-        <div className="opening-noise" aria-hidden="true" />
+          <div className="identity">
+            <p className="eyebrow">SOFTWARE DEVELOPER</p>
+            <h1>Vaibhav</h1>
+            <p className="identity-copy">
+              Rust and C++ focused developer building stronger foundations in
+              systems, backend engineering, and problem solving.
+            </p>
+          </div>
 
-        <motion.div
-          className="opening-orb opening-orb-a"
-          animate={
-            reduceMotion
-              ? undefined
-              : {
-                  x: [0, 50, -20, 0],
-                  y: [0, -35, 18, 0],
-                  scale: [1, 1.08, 0.96, 1],
-                }
-          }
-          transition={{ duration: 17, repeat: Infinity, ease: "easeInOut" }}
-          aria-hidden="true"
-        />
-        <motion.div
-          className="opening-orb opening-orb-b"
-          animate={
-            reduceMotion
-              ? undefined
-              : {
-                  x: [0, -35, 28, 0],
-                  y: [0, 28, -24, 0],
-                  scale: [1, 0.94, 1.07, 1],
-                }
-          }
-          transition={{ duration: 21, repeat: Infinity, ease: "easeInOut" }}
-          aria-hidden="true"
-        />
+          <div className="availability">
+            <span className="status-dot" />
+            <span>Currently learning & building</span>
+          </div>
+        </div>
 
-        <motion.div
-          className="opening-copy"
+        <nav className="side-nav" aria-label="Portfolio sections">
+          {navigation.map(([label, href], index) => (
+            <a href={href} key={href}>
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              {label}
+            </a>
+          ))}
+        </nav>
+
+        <div className="rail-links">
+          <a
+            href="https://github.com/Vaibh37"
+            target="_blank"
+            rel="noreferrer"
+          >
+            GitHub <Arrow />
+          </a>
+          <a
+            href="https://x.com/AkagamiRust37"
+            target="_blank"
+            rel="noreferrer"
+          >
+            X <Arrow />
+          </a>
+          <a href="mailto:devvaibhav37@gmail.com">Email <Arrow /></a>
+        </div>
+      </motion.aside>
+
+      <section className="content-column">
+        <motion.section
+          className="intro-section"
           initial={reduceMotion ? { opacity: 1 } : "hidden"}
           animate="show"
           variants={{
             hidden: {},
             show: {
               transition: {
+                staggerChildren: 0.09,
                 delayChildren: 0.08,
-                staggerChildren: 0.1,
               },
             },
           }}
         >
           <motion.p
-            className="opening-label"
+            className="section-label"
             variants={{
-              hidden: { opacity: 0, y: 18 },
+              hidden: { opacity: 0, y: 12 },
               show: {
                 opacity: 1,
                 y: 0,
-                transition: { duration: 0.55, ease },
+                transition: { duration: 0.45, ease },
               },
             }}
           >
-            SOFTWARE DEVELOPER / INDIA
+            PORTFOLIO / 2026
           </motion.p>
 
-          <motion.h1
-            className="opening-name"
-            style={reduceMotion ? undefined : { y: heroWordY }}
+          <motion.h2
             variants={{
-              hidden: { opacity: 0, y: 30 },
-              show: {
-                opacity: 1,
-                y: 0,
-                transition: { duration: 0.82, ease },
-              },
-            }}
-          >
-            VAIBHAV
-          </motion.h1>
-
-          <motion.div
-            className="opening-statement"
-            variants={{
-              hidden: { opacity: 0, y: 24 },
-              show: {
-                opacity: 1,
-                y: 0,
-                transition: { duration: 0.7, ease },
-              },
-            }}
-          >
-            <span className="statement-main">Rust + C++</span>
-            <span className="statement-separator">/</span>
-            <span className="statement-sub">MERN</span>
-          </motion.div>
-
-          <motion.p
-            className="opening-description"
-            variants={{
-              hidden: { opacity: 0, y: 18 },
+              hidden: { opacity: 0, y: 20 },
               show: {
                 opacity: 1,
                 y: 0,
@@ -164,254 +162,339 @@ export default function Portfolio() {
               },
             }}
           >
-            Focused on software fundamentals, backend engineering, and
-            performance-minded development. I use MERN when the product belongs
-            on the web.
+            Rust &amp; C++ at the core.
+            <br />
+            MERN for full-stack products.
+          </motion.h2>
+
+          <motion.p
+            className="intro-copy"
+            variants={{
+              hidden: { opacity: 0, y: 18 },
+              show: {
+                opacity: 1,
+                y: 0,
+                transition: { duration: 0.58, ease },
+              },
+            }}
+          >
+            I&apos;m focused on learning software deeply: memory, data
+            structures, APIs, databases, deployment, and the systems concepts
+            behind the code I write.
           </motion.p>
 
           <motion.div
-            className="opening-links"
+            className="intro-actions"
             variants={{
               hidden: { opacity: 0 },
               show: {
                 opacity: 1,
-                transition: { duration: 0.5, delay: 0.15 },
+                transition: { duration: 0.5, delay: 0.08 },
               },
             }}
           >
-            <a href="#work">View work ↓</a>
+            <a className="primary-link" href="#work">
+              View selected work
+            </a>
             <a
+              className="secondary-link"
               href="https://github.com/Vaibh37"
               target="_blank"
               rel="noreferrer"
             >
-              GitHub <Arrow />
+              GitHub profile <Arrow />
             </a>
-            <a href="mailto:devvaibhav37@gmail.com">Email <Arrow /></a>
           </motion.div>
-        </motion.div>
 
-        <motion.div
-          className="opening-portrait"
-          initial={reduceMotion ? { opacity: 1 } : { opacity: 0, scale: 0.94, x: 40 }}
-          animate={{ opacity: 1, scale: 1, x: 0 }}
-          transition={{ duration: 0.9, delay: 0.2, ease }}
-          style={reduceMotion ? undefined : { y: portraitY }}
-        >
-          <div className="portrait-shape">
-            <Image
-              src={profileImage}
-              alt="Vaibhav"
-              priority
-              className="portrait-image"
-              sizes="(max-width: 760px) 78vw, 420px"
-            />
-          </div>
-          <div className="portrait-note">
-            <span>CURRENT</span>
-            <strong>Rust · DSA · Backend</strong>
-          </div>
-        </motion.div>
+          <motion.div
+            className="focus-grid"
+            variants={{
+              hidden: { opacity: 0, y: 16 },
+              show: {
+                opacity: 1,
+                y: 0,
+                transition: { duration: 0.55, ease },
+              },
+            }}
+          >
+            <div>
+              <span>Primary</span>
+              <strong>Rust · C++</strong>
+            </div>
+            <div>
+              <span>Full-stack</span>
+              <strong>MERN</strong>
+            </div>
+            <div>
+              <span>Current focus</span>
+              <strong>DSA · Backend</strong>
+            </div>
+          </motion.div>
+        </motion.section>
 
-        <div className="opening-scroll" aria-hidden="true">
-          <span>SCROLL</span>
-          <i />
-        </div>
-      </section>
+        <section className="content-section" id="work">
+          <Reveal className="section-head">
+            <p className="section-label">01 / WORK</p>
+            <h2>Selected projects</h2>
+            <p>
+              Projects that show different parts of how I build: a full-stack
+              product and a focused browser application.
+            </p>
+          </Reveal>
 
-      <section className="work-stage" id="work">
-        <motion.div className="stage-title" {...reveal}>
-          <span>01</span>
-          <h2>Selected work</h2>
-        </motion.div>
+          <article className="case-study case-study-primary">
+            <Reveal className="case-copy">
+              <div className="case-meta">
+                <span>StudyOS</span>
+                <span>Full-stack application</span>
+              </div>
 
-        <motion.article className="feature feature-studyos" {...reveal}>
-          <div className="feature-visual">
-            <motion.div
-              className="studyos-window"
-              whileHover={reduceMotion ? undefined : { rotate: -0.6, scale: 1.01 }}
-              transition={{ duration: 0.35, ease }}
+              <h3>One workspace for studying.</h3>
+
+              <p className="case-summary">
+                StudyOS connects tasks, notes, subjects, focus sessions,
+                calendars, progress tracking, XP, streaks, and a leaderboard
+                inside one student productivity platform.
+              </p>
+
+              <dl className="case-facts">
+                <div>
+                  <dt>Frontend</dt>
+                  <dd>React · Vite · Firebase Auth</dd>
+                </div>
+                <div>
+                  <dt>Backend</dt>
+                  <dd>Node.js · Express · MongoDB</dd>
+                </div>
+                <div>
+                  <dt>Local mode</dt>
+                  <dd>IndexedDB guest storage</dd>
+                </div>
+                <div>
+                  <dt>Deployment</dt>
+                  <dd>Vercel · Render</dd>
+                </div>
+              </dl>
+
+              <div className="case-links">
+                <a
+                  href="https://studyos-one-omega.vercel.app/"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Live application <Arrow />
+                </a>
+                <a
+                  href="https://github.com/Vaibh37/Studyos"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Source code <Arrow />
+                </a>
+              </div>
+            </Reveal>
+
+            <motion.a
+              className="case-image-link"
+              href="https://studyos-one-omega.vercel.app/"
+              target="_blank"
+              rel="noreferrer"
+              initial={
+                reduceMotion
+                  ? { opacity: 1 }
+                  : { opacity: 0, clipPath: "inset(0 0 18% 0)" }
+              }
+              whileInView={{
+                opacity: 1,
+                clipPath: "inset(0 0 0% 0)",
+              }}
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{ duration: 0.82, ease }}
+              whileHover={reduceMotion ? undefined : { y: -4 }}
             >
               <Image
                 src="https://raw.githubusercontent.com/Vaibh37/Studyos/main/docs/screenshots/dashboard.png"
                 alt="StudyOS dashboard"
                 width={1600}
                 height={1000}
-                sizes="(max-width: 900px) 94vw, 840px"
+                className="case-image"
+                sizes="(max-width: 900px) 94vw, 780px"
               />
+            </motion.a>
+          </article>
+
+          <article className="case-study case-study-secondary">
+            <Reveal className="case-copy">
+              <div className="case-meta">
+                <span>QRify</span>
+                <span>Browser / PWA</span>
+              </div>
+
+              <h3>QR generation without a backend.</h3>
+
+              <p className="case-summary">
+                QRify generates and customizes QR codes entirely in the browser
+                and continues working offline through a Service Worker and the
+                Cache API.
+              </p>
+
+              <dl className="case-facts">
+                <div>
+                  <dt>Core</dt>
+                  <dd>HTML · CSS · JavaScript</dd>
+                </div>
+                <div>
+                  <dt>Offline</dt>
+                  <dd>Service Worker · Cache API</dd>
+                </div>
+                <div>
+                  <dt>Features</dt>
+                  <dd>Contrast checks · PNG · Clipboard</dd>
+                </div>
+                <div>
+                  <dt>Architecture</dt>
+                  <dd>100% client-side</dd>
+                </div>
+              </dl>
+
+              <div className="case-links">
+                <a
+                  href="https://github.com/Vaibh37/qrify"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Source code <Arrow />
+                </a>
+              </div>
+            </Reveal>
+
+            <motion.div
+              className="qrify-panel"
+              initial={reduceMotion ? { opacity: 1 } : { opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.68, ease }}
+            >
+              <div className="qrify-panel-inner">
+                <Image
+                  src="https://raw.githubusercontent.com/Vaibh37/qrify/main/icons/icon-512.png"
+                  alt="QRify app icon"
+                  width={512}
+                  height={512}
+                  className="qrify-icon"
+                />
+                <div>
+                  <span>QRIFY</span>
+                  <p>Offline-capable QR generation in the browser.</p>
+                </div>
+              </div>
             </motion.div>
-          </div>
+          </article>
+        </section>
 
-          <div className="feature-copy">
-            <div className="feature-index">01 / FULL-STACK / 2026</div>
-            <h3>StudyOS</h3>
+        <section className="content-section" id="about">
+          <Reveal className="section-head">
+            <p className="section-label">02 / ABOUT</p>
+            <h2>How I&apos;m developing</h2>
+          </Reveal>
+
+          <Reveal className="about-layout">
+            <div className="about-lead">
+              <p>
+                My main focus is <strong>Rust and C++</strong>. I&apos;m using
+                them to improve how I think about memory, ownership, data
+                structures, performance, and lower-level software behavior.
+              </p>
+            </div>
+
+            <div className="about-copy">
+              <p>
+                For product work, I use the <strong>MERN stack</strong> to
+                build interfaces, APIs, authentication flows, and
+                database-backed applications.
+              </p>
+              <p>
+                Right now I&apos;m spending most of my time on DSA, backend
+                fundamentals, Rust, and building projects that force me to
+                understand the implementation instead of only the surface API.
+              </p>
+            </div>
+          </Reveal>
+        </section>
+
+        <section className="content-section" id="stack">
+          <Reveal className="section-head">
+            <p className="section-label">03 / STACK</p>
+            <h2>Languages &amp; tools</h2>
+          </Reveal>
+
+          <div className="stack-list">
+            <Reveal className="stack-row">
+              <span>Core</span>
+              <div>
+                <strong>Rust</strong>
+                <strong>C++</strong>
+              </div>
+            </Reveal>
+
+            <Reveal className="stack-row" delay={0.05}>
+              <span>Full-stack</span>
+              <div>
+                <strong>MongoDB</strong>
+                <strong>Express</strong>
+                <strong>React</strong>
+                <strong>Node.js</strong>
+              </div>
+            </Reveal>
+
+            <Reveal className="stack-row" delay={0.1}>
+              <span>Also working with</span>
+              <div className="stack-small">
+                <strong>C</strong>
+                <strong>Python</strong>
+                <strong>JavaScript</strong>
+                <strong>Next.js</strong>
+                <strong>PostgreSQL</strong>
+                <strong>MySQL</strong>
+                <strong>Docker</strong>
+                <strong>Git</strong>
+              </div>
+            </Reveal>
+          </div>
+        </section>
+
+        <section className="contact-block" id="contact">
+          <Reveal>
+            <p className="section-label">04 / CONTACT</p>
+            <h2>Get in touch.</h2>
             <p>
-              Student productivity platform combining tasks, notes, focus
-              sessions, progress tracking, XP, streaks, and a leaderboard.
+              Email is the best way to reach me. You can also find my work on
+              GitHub and what I&apos;m building on X.
             </p>
-            <div className="feature-tech">
-              React · Node.js · Express · MongoDB · Firebase
-            </div>
-            <div className="feature-links">
+
+            <div className="contact-actions">
+              <a className="primary-link" href="mailto:devvaibhav37@gmail.com">
+                devvaibhav37@gmail.com
+              </a>
               <a
-                href="https://studyos-one-omega.vercel.app/"
+                className="secondary-link"
+                href="https://github.com/Vaibh37"
                 target="_blank"
                 rel="noreferrer"
               >
-                Live project <Arrow />
+                GitHub <Arrow />
               </a>
               <a
-                href="https://github.com/Vaibh37/Studyos"
+                className="secondary-link"
+                href="https://x.com/AkagamiRust37"
                 target="_blank"
                 rel="noreferrer"
               >
-                Source <Arrow />
+                X <Arrow />
               </a>
             </div>
-          </div>
-        </motion.article>
-
-        <motion.article className="feature feature-qrify" {...reveal}>
-          <div className="feature-copy">
-            <div className="feature-index">02 / PWA / 2026</div>
-            <h3>QRify</h3>
-            <p>
-              Client-side QR generation with customization, contrast checks,
-              downloads, clipboard support, service workers, and offline
-              caching.
-            </p>
-            <div className="feature-tech">
-              JavaScript · Service Worker · Cache API · PWA
-            </div>
-            <div className="feature-links">
-              <a
-                href="https://github.com/Vaibh37/qrify"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Source <Arrow />
-              </a>
-            </div>
-          </div>
-
-          <div className="qrify-canvas" aria-hidden="true">
-            <motion.div
-              className="qrify-ring ring-a"
-              animate={reduceMotion ? undefined : { rotate: 360 }}
-              transition={{ duration: 22, repeat: Infinity, ease: "linear" }}
-            />
-            <motion.div
-              className="qrify-ring ring-b"
-              animate={reduceMotion ? undefined : { rotate: -360 }}
-              transition={{ duration: 28, repeat: Infinity, ease: "linear" }}
-            />
-            <motion.div
-              className="qrify-logo-wrap"
-              whileHover={reduceMotion ? undefined : { scale: 1.06, rotate: 2 }}
-              transition={{ duration: 0.3, ease }}
-            >
-              <Image
-                src="https://raw.githubusercontent.com/Vaibh37/qrify/main/icons/icon-512.png"
-                alt=""
-                width={512}
-                height={512}
-                className="qrify-logo"
-              />
-            </motion.div>
-          </div>
-        </motion.article>
-      </section>
-
-      <section className="about-spread" id="about">
-        <motion.div className="about-number" {...reveal}>
-          02
-        </motion.div>
-
-        <motion.div className="about-statement" {...reveal}>
-          <p>
-            I&apos;m Vaibhav. My main languages are{" "}
-            <strong>Rust and C++</strong>.
-          </p>
-          <p>
-            I&apos;m currently strengthening my fundamentals in data
-            structures, memory, backend systems, APIs, databases, and
-            deployment.
-          </p>
-        </motion.div>
-
-        <motion.div className="about-side" {...reveal}>
-          <span>FULL-STACK</span>
-          <p>
-            For web products, I use the <strong>MERN stack</strong>.
-          </p>
-
-          <span>LEARNING STYLE</span>
-          <p>
-            I learn by building, debugging, and understanding the mechanics
-            behind the code.
-          </p>
-        </motion.div>
-      </section>
-
-      <section className="stack-band" id="stack">
-        <div className="stack-band-head">
-          <span>03 / STACK</span>
-          <p>Languages and tools I work with</p>
-        </div>
-
-        <div className="marquee" aria-label="Technology stack">
-          <motion.div
-            className="marquee-track"
-            animate={reduceMotion ? undefined : { x: ["0%", "-50%"] }}
-            transition={{ duration: 24, repeat: Infinity, ease: "linear" }}
-          >
-            {[...stack, ...stack].map((item, index) => (
-              <span key={`${item}-${index}`}>{item}</span>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
-      <section className="ending" id="contact">
-        <motion.div
-          className="ending-inner"
-          initial={reduceMotion ? { opacity: 1 } : { opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.25 }}
-          transition={{ duration: 0.8, ease }}
-        >
-          <span className="ending-index">04 / CONTACT</span>
-          <h2>Let&apos;s talk.</h2>
-          <a
-            className="ending-email"
-            href="mailto:devvaibhav37@gmail.com"
-          >
-            devvaibhav37@gmail.com <Arrow />
-          </a>
-
-          <div className="ending-socials">
-            <a
-              href="https://github.com/Vaibh37"
-              target="_blank"
-              rel="noreferrer"
-            >
-              GitHub <Arrow />
-            </a>
-            <a
-              href="https://x.com/AkagamiRust37"
-              target="_blank"
-              rel="noreferrer"
-            >
-              X / @AkagamiRust37 <Arrow />
-            </a>
-          </div>
-
-          <div className="ending-signoff">
-            <span>VAIBHAV</span>
-            <span>RUST · C++ · MERN</span>
-            <span>2026</span>
-          </div>
-        </motion.div>
+          </Reveal>
+        </section>
       </section>
     </main>
   );
