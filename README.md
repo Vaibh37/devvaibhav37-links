@@ -1,16 +1,22 @@
 # Vaibhav Portfolio
 
-Personal portfolio built with **Next.js**, **TypeScript**, and **Framer Motion**.
+A professional personal portfolio built with **Next.js**, **TypeScript**, and **Framer Motion**.
 
-The visual direction is intentionally restrained: strong typography, real project visuals, simple layouts, and motion used only where it improves hierarchy.
+## Direction
 
-## Focus
+The site is designed around a clean, light visual system with a blue → cyan → mint accent palette.
+
+The portfolio focuses on:
 
 - Rust
 - C++
-- MERN for full-stack web applications
+- MERN for full-stack products
+- real project screenshots
+- restrained but visible motion
+- responsive layouts
+- accessible reduced-motion behavior
 
-## Featured projects
+## Featured work
 
 ### StudyOS
 
@@ -29,7 +35,7 @@ A lightweight client-side QR generator with customization and offline PWA suppor
 
 - Source: https://github.com/Vaibh37/qrify
 
-## Tech
+## Portfolio stack
 
 - Next.js 16
 - React 19
@@ -37,14 +43,14 @@ A lightweight client-side QR generator with customization and offline PWA suppor
 - Framer Motion
 - CSS
 
-## Local development
+## Run locally
 
 ```bash
 npm install
 npm run dev
 ```
 
-Then open:
+Open:
 
 ```text
 http://localhost:3000
@@ -57,6 +63,6 @@ npm run build
 npm start
 ```
 
-## Deployment
+## Deploy
 
-Designed for Vercel. No environment variables are required for the current portfolio.
+Vercel-ready. No environment variables are required.
