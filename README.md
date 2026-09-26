@@ -1,70 +1,50 @@
-# devvaibhav37-links
+# Vaibhav Portfolio
 
-Personal portfolio for **Vaibhav**.
+Personal portfolio built with **Next.js**, **TypeScript**, and **Framer Motion**.
 
-The original version of this repository was a vanilla HTML/CSS/JavaScript link hub. It has now been rebuilt as a full **Next.js portfolio**.
+The visual direction is intentionally restrained: strong typography, real project visuals, simple layouts, and motion used only where it improves hierarchy.
 
-## Direction
+## Focus
 
-The site is intentionally centered around:
+- Rust
+- C++
+- MERN for full-stack web applications
 
-- **Rust**
-- **C++**
-- **MERN** for full-stack product work
-
-It is not meant to list every technology or every repository.
-
-The goal is to show a small number of things clearly:
-
-1. what I focus on
-2. what I have shipped
-3. the technologies I actually use
-4. where to find me
-
-## Featured work
+## Featured projects
 
 ### StudyOS
 
-Full-stack student productivity platform with tasks, notes, focus sessions, progress tracking, XP, streaks and a leaderboard.
+A full-stack student productivity platform with tasks, notes, focus sessions, progress tracking, XP, streaks, and a leaderboard.
 
-- React
-- Node.js
-- Express
-- MongoDB
-- Firebase
+**Stack:** React, Node.js, Express, MongoDB, Firebase
 
-Live: https://studyos-one-omega.vercel.app/
-
-Source: https://github.com/Vaibh37/Studyos
+- Live: https://studyos-one-omega.vercel.app/
+- Source: https://github.com/Vaibh37/Studyos
 
 ### QRify
 
-Lightweight privacy-focused QR generator with customization and offline PWA support.
+A lightweight client-side QR generator with customization and offline PWA support.
 
-- JavaScript
-- Service Worker
-- Cache API
-- PWA
+**Stack:** JavaScript, Service Worker, Cache API, PWA
 
-Source: https://github.com/Vaibh37/qrify
+- Source: https://github.com/Vaibh37/qrify
 
-## Stack
+## Tech
 
 - Next.js 16
 - React 19
 - TypeScript
+- Framer Motion
 - CSS
 
-No component library and no animation dependency.
-
-## Run locally
+## Local development
 
 ```bash
 npm install
 npm run dev
 ```
 
-Open:
+Then open:
 
 ```text
 http://localhost:3000
@@ -77,14 +57,6 @@ npm run build
 npm start
 ```
 
-## Deploy
+## Deployment
 
-This project is Vercel-ready.
-
-Import this repository into Vercel and deploy it as a Next.js project.
-
-No environment variables are required for the current site.
-
----
-
-Built and maintained by [Vaibh37](https://github.com/Vaibh37).
+Designed for Vercel. No environment variables are required for the current portfolio.

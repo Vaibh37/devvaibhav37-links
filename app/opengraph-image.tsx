@@ -1,10 +1,7 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "Vaibhav — Rust & C++ Developer";
-export const size = {
-  width: 1200,
-  height: 630,
-};
+export const alt = "Vaibhav — Rust, C++ & Software Engineering";
+export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
 export default function Image() {
@@ -17,50 +14,36 @@ export default function Image() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          background: "#08090b",
-          color: "#f4f1eb",
-          padding: "72px",
+          padding: "72px 78px",
+          background: "#0a0b0e",
+          color: "#f4f1ea",
           fontFamily: "Arial, sans-serif",
         }}
       >
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "14px",
-            fontSize: 28,
-          }}
-        >
-          <span
+        <div style={{ display: "flex", justifyContent: "space-between", fontSize: 22 }}>
+          <span>VAIBHAV</span>
+          <span style={{ color: "#8e9199" }}>SOFTWARE DEVELOPER</span>
+        </div>
+
+        <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+          <div style={{ fontSize: 104, fontWeight: 700, letterSpacing: -6 }}>
+            Rust + C++
+          </div>
+          <div
             style={{
-              width: 14,
-              height: 14,
+              width: 520,
+              height: 12,
               borderRadius: 999,
-              background: "#c41e3a",
+              background:
+                "linear-gradient(90deg, #f47a37 0%, #e85b48 38%, #6f7cff 100%)",
             }}
           />
-          VAIBHAV
+          <div style={{ fontSize: 34, color: "#a5a7ad" }}>MERN for the web.</div>
         </div>
 
-        <div style={{ display: "flex", flexDirection: "column", gap: 18 }}>
-          <div style={{ fontSize: 84, fontWeight: 700, letterSpacing: -4 }}>
-            Rust & C++
-          </div>
-          <div style={{ fontSize: 34, color: "#9d9a94" }}>
-            MERN when it needs a browser.
-          </div>
-        </div>
-
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            fontSize: 24,
-            color: "#74716c",
-          }}
-        >
-          <span>github.com/Vaibh37</span>
-          <span>Software Developer</span>
+        <div style={{ display: "flex", justifyContent: "space-between", fontSize: 20 }}>
+          <span style={{ color: "#8e9199" }}>github.com/Vaibh37</span>
+          <span>2026</span>
         </div>
       </div>
     ),
