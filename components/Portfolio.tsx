@@ -7,8 +7,9 @@ import {
   useReducedMotion,
   useScroll,
   useSpring,
+  useTransform,
 } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import profileImage from "@/assets/profile.jpeg";
 
 const ease = [0.22, 1, 0.36, 1] as const;
@@ -28,7 +29,7 @@ function LoadingScreen({ onComplete }: { onComplete: () => void }) {
   const reduceMotion = useReducedMotion();
 
   useEffect(() => {
-    const timer = window.setTimeout(onComplete, reduceMotion ? 120 : 1350);
+    const timer = window.setTimeout(onComplete, reduceMotion ? 120 : 1150);
     return () => window.clearTimeout(timer);
   }, [onComplete, reduceMotion]);
 
@@ -37,40 +38,17 @@ function LoadingScreen({ onComplete }: { onComplete: () => void }) {
       className="loader"
       initial={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      transition={{ duration: 0.42, ease }}
+      transition={{ duration: 0.4, ease }}
       aria-label="Loading portfolio"
       role="status"
     >
-      <div className="loader-inner">
-        <motion.svg
-          className="loader-enso"
-          viewBox="0 0 140 140"
-          aria-hidden="true"
-          initial={reduceMotion ? undefined : { rotate: -18 }}
-          animate={reduceMotion ? undefined : { rotate: 342 }}
-          transition={{ duration: 1.25, ease }}
-        >
-          <motion.circle
-            cx="70"
-            cy="70"
-            r="50"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="3"
-            strokeLinecap="round"
-            strokeDasharray="276 38"
-            initial={reduceMotion ? undefined : { pathLength: 0, opacity: 0.2 }}
-            animate={reduceMotion ? undefined : { pathLength: 1, opacity: 1 }}
-            transition={{ duration: 0.9, ease }}
-          />
-        </motion.svg>
-
+      <div className="loader-inner loader-inner-simple">
         <div className="loader-copy">
           <motion.p
             className="loader-jp"
             initial={reduceMotion ? undefined : { opacity: 0, y: 12 }}
             animate={reduceMotion ? undefined : { opacity: 1, y: 0 }}
-            transition={{ duration: 0.45, delay: 0.14, ease }}
+            transition={{ duration: 0.45, delay: 0.08, ease }}
           >
             読み込み中
           </motion.p>
@@ -79,14 +57,14 @@ function LoadingScreen({ onComplete }: { onComplete: () => void }) {
             className="loader-rule"
             initial={reduceMotion ? undefined : { scaleX: 0 }}
             animate={reduceMotion ? undefined : { scaleX: 1 }}
-            transition={{ duration: 0.85, delay: 0.2, ease }}
+            transition={{ duration: 0.72, delay: 0.16, ease }}
           />
 
           <motion.p
             className="loader-en"
             initial={reduceMotion ? undefined : { opacity: 0 }}
             animate={reduceMotion ? undefined : { opacity: 1 }}
-            transition={{ duration: 0.4, delay: 0.35 }}
+            transition={{ duration: 0.35, delay: 0.26 }}
           >
             VAIBHAV / PORTFOLIO
           </motion.p>
@@ -114,6 +92,44 @@ function Reveal({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.18 }}
       transition={{ duration: 0.62, delay, ease }}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+function ScrollParallax({
+  children,
+  className = "",
+  distance = 36,
+}: {
+  children: React.ReactNode;
+  className?: string;
+  distance?: number;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+  const reduceMotion = useReducedMotion();
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  });
+
+  const y = useTransform(
+    scrollYProgress,
+    [0, 1],
+    [distance, -distance],
+  );
+  const scale = useTransform(
+    scrollYProgress,
+    [0, 0.5, 1],
+    [0.985, 1, 0.995],
+  );
+
+  return (
+    <motion.div
+      ref={ref}
+      className={className}
+      style={reduceMotion ? undefined : { y, scale }}
     >
       {children}
     </motion.div>
@@ -230,8 +246,8 @@ export default function Portfolio() {
               },
             }}
           >
-            <motion.div
-              className="intro-label-row"
+            <motion.p
+              className="section-label"
               variants={{
                 hidden: { opacity: 0, y: 12 },
                 show: {
@@ -241,9 +257,8 @@ export default function Portfolio() {
                 },
               }}
             >
-              <p className="section-label">PORTFOLIO / 2026</p>
-              <span className="jp-label">開発者</span>
-            </motion.div>
+              PORTFOLIO / 2026
+            </motion.p>
 
             <motion.h2
               variants={{
@@ -341,10 +356,7 @@ export default function Portfolio() {
 
           <section className="content-section" id="work">
             <Reveal className="section-head">
-              <div className="section-title-row">
-                <p className="section-label">01 / WORK</p>
-                <span className="jp-label">作品</span>
-              </div>
+              <p className="section-label">01 / WORK</p>
               <h2>Selected projects</h2>
               <p>
                 Projects that show different parts of how I build: a full-stack
@@ -404,34 +416,35 @@ export default function Portfolio() {
                 </div>
               </Reveal>
 
-              <motion.a
-                className="case-image-link"
-                href="https://studyos-one-omega.vercel.app/"
-                target="_blank"
-                rel="noreferrer"
-                initial={
-                  reduceMotion
-                    ? { opacity: 1 }
-                    : { opacity: 0, clipPath: "inset(0 0 20% 0)", y: 24 }
-                }
-                whileInView={{
-                  opacity: 1,
-                  clipPath: "inset(0 0 0% 0)",
-                  y: 0,
-                }}
-                viewport={{ once: true, amount: 0.15 }}
-                transition={{ duration: 0.82, ease }}
-                whileHover={reduceMotion ? undefined : { y: -5, scale: 1.004 }}
-              >
-                <Image
-                  src="https://raw.githubusercontent.com/Vaibh37/Studyos/main/docs/screenshots/dashboard.png"
-                  alt="StudyOS dashboard"
-                  width={1600}
-                  height={1000}
-                  className="case-image"
-                  sizes="(max-width: 900px) 94vw, 780px"
-                />
-              </motion.a>
+              <ScrollParallax className="scroll-media" distance={44}>
+                <motion.a
+                  className="case-image-link"
+                  href="https://studyos-one-omega.vercel.app/"
+                  target="_blank"
+                  rel="noreferrer"
+                  initial={
+                    reduceMotion
+                      ? { opacity: 1 }
+                      : { opacity: 0, clipPath: "inset(0 0 20% 0)" }
+                  }
+                  whileInView={{
+                    opacity: 1,
+                    clipPath: "inset(0 0 0% 0)",
+                  }}
+                  viewport={{ once: true, amount: 0.12 }}
+                  transition={{ duration: 0.82, ease }}
+                  whileHover={reduceMotion ? undefined : { y: -5 }}
+                >
+                  <Image
+                    src="https://raw.githubusercontent.com/Vaibh37/Studyos/main/docs/screenshots/dashboard.png"
+                    alt="StudyOS dashboard"
+                    width={1600}
+                    height={1000}
+                    className="case-image"
+                    sizes="(max-width: 900px) 94vw, 780px"
+                  />
+                </motion.a>
+              </ScrollParallax>
             </article>
 
             <article className="case-study case-study-secondary">
@@ -479,75 +492,73 @@ export default function Portfolio() {
                 </div>
               </Reveal>
 
-              <motion.div
-                className="qrify-panel"
-                initial={reduceMotion ? { opacity: 1 } : { opacity: 0, y: 26 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.68, ease }}
-                whileHover={reduceMotion ? undefined : { y: -4 }}
-              >
-                <div className="qrify-panel-inner">
-                  <motion.div
-                    whileHover={reduceMotion ? undefined : { rotate: 2, scale: 1.04 }}
-                    transition={{ duration: 0.24, ease }}
-                  >
-                    <Image
-                      src="https://raw.githubusercontent.com/Vaibh37/qrify/main/icons/icon-512.png"
-                      alt="QRify app icon"
-                      width={512}
-                      height={512}
-                      className="qrify-icon"
-                    />
-                  </motion.div>
-                  <div>
-                    <span>QRIFY</span>
-                    <p>Offline-capable QR generation in the browser.</p>
+              <ScrollParallax className="scroll-media" distance={34}>
+                <motion.div
+                  className="qrify-panel"
+                  initial={reduceMotion ? { opacity: 1 } : { opacity: 0, y: 26 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.2 }}
+                  transition={{ duration: 0.68, ease }}
+                  whileHover={reduceMotion ? undefined : { y: -4 }}
+                >
+                  <div className="qrify-panel-inner">
+                    <motion.div
+                      whileHover={reduceMotion ? undefined : { rotate: 2, scale: 1.04 }}
+                      transition={{ duration: 0.24, ease }}
+                    >
+                      <Image
+                        src="https://raw.githubusercontent.com/Vaibh37/qrify/main/icons/icon-512.png"
+                        alt="QRify app icon"
+                        width={512}
+                        height={512}
+                        className="qrify-icon"
+                      />
+                    </motion.div>
+                    <div>
+                      <span>QRIFY</span>
+                      <p>Offline-capable QR generation in the browser.</p>
+                    </div>
                   </div>
-                </div>
-              </motion.div>
+                </motion.div>
+              </ScrollParallax>
             </article>
           </section>
 
           <section className="content-section" id="about">
             <Reveal className="section-head">
-              <div className="section-title-row">
-                <p className="section-label">02 / ABOUT</p>
-                <span className="jp-label">紹介</span>
-              </div>
+              <p className="section-label">02 / ABOUT</p>
               <h2>How I&apos;m developing</h2>
             </Reveal>
 
-            <Reveal className="about-layout">
-              <div className="about-lead">
-                <p>
-                  My main focus is <strong>Rust and C++</strong>. I&apos;m using
-                  them to improve how I think about memory, ownership, data
-                  structures, performance, and lower-level software behavior.
-                </p>
-              </div>
+            <ScrollParallax className="about-scroll" distance={24}>
+              <Reveal className="about-layout">
+                <div className="about-lead">
+                  <p>
+                    My main focus is <strong>Rust and C++</strong>. I&apos;m using
+                    them to improve how I think about memory, ownership, data
+                    structures, performance, and lower-level software behavior.
+                  </p>
+                </div>
 
-              <div className="about-copy">
-                <p>
-                  For product work, I use the <strong>MERN stack</strong> to
-                  build interfaces, APIs, authentication flows, and
-                  database-backed applications.
-                </p>
-                <p>
-                  Right now I&apos;m spending most of my time on DSA, backend
-                  fundamentals, Rust, and building projects that force me to
-                  understand the implementation instead of only the surface API.
-                </p>
-              </div>
-            </Reveal>
+                <div className="about-copy">
+                  <p>
+                    For product work, I use the <strong>MERN stack</strong> to
+                    build interfaces, APIs, authentication flows, and
+                    database-backed applications.
+                  </p>
+                  <p>
+                    Right now I&apos;m spending most of my time on DSA, backend
+                    fundamentals, Rust, and building projects that force me to
+                    understand the implementation instead of only the surface API.
+                  </p>
+                </div>
+              </Reveal>
+            </ScrollParallax>
           </section>
 
           <section className="content-section" id="stack">
             <Reveal className="section-head">
-              <div className="section-title-row">
-                <p className="section-label">03 / STACK</p>
-                <span className="jp-label">技術</span>
-              </div>
+              <p className="section-label">03 / STACK</p>
               <h2>Languages &amp; tools</h2>
             </Reveal>
 
@@ -588,10 +599,7 @@ export default function Portfolio() {
 
           <section className="contact-block" id="contact">
             <Reveal>
-              <div className="section-title-row">
-                <p className="section-label">04 / CONTACT</p>
-                <span className="jp-label">連絡</span>
-              </div>
+              <p className="section-label">04 / CONTACT</p>
               <h2>Get in touch.</h2>
               <p>
                 Email is the best way to reach me. You can also find my work on

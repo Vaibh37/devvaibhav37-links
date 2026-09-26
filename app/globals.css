@@ -976,3 +976,73 @@ img {
     display: none;
   }
 }
+
+
+/* Scroll behavior refinement */
+
+.profile-rail {
+  position: relative;
+  top: auto;
+  min-height: auto;
+  align-self: start;
+  justify-content: flex-start;
+}
+
+.profile-rail .side-nav {
+  margin-top: 8px;
+}
+
+.profile-rail .rail-links {
+  margin-top: 26px;
+  padding-bottom: 32px;
+}
+
+.loader-inner-simple {
+  width: min(420px, calc(100% - 56px));
+  grid-template-columns: 1fr;
+  gap: 0;
+}
+
+.scroll-media,
+.about-scroll {
+  will-change: transform;
+}
+
+.scroll-media {
+  margin-top: 8px;
+}
+
+.scroll-media .case-image-link,
+.scroll-media .qrify-panel {
+  margin-top: 34px;
+}
+
+.about-scroll {
+  position: relative;
+}
+
+@media (min-width: 901px) {
+  .profile-rail {
+    padding-bottom: 120px;
+  }
+}
+
+@media (max-width: 900px) {
+  .profile-rail {
+    position: relative;
+    top: auto;
+    min-height: auto;
+    padding-bottom: 56px;
+  }
+}
+
+@media (max-width: 680px) {
+  .loader-inner-simple {
+    width: min(360px, calc(100% - 40px));
+  }
+
+  .scroll-media .case-image-link,
+  .scroll-media .qrify-panel {
+    margin-top: 26px;
+  }
+}
