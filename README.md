@@ -1,59 +1,90 @@
 # devvaibhav37-links
 
-> just a guy turning random thoughts into random projects.
+Personal portfolio for **Vaibhav**.
 
-A personal link hub for **Vaibhav** — one place for my socials, projects, and ways to reach me.
+The original version of this repository was a vanilla HTML/CSS/JavaScript link hub. It has now been rebuilt as a full **Next.js portfolio**.
 
----
+## Direction
 
-## ✦ About
+The site is intentionally centered around:
 
-This is my personal Linktree-style website.
+- **Rust**
+- **C++**
+- **MERN** for full-stack product work
 
-Instead of having different links scattered across different platforms, everything lives here in one simple page.
+It is not meant to list every technology or every repository.
 
-It's intentionally minimal, fast, responsive, and a little over-engineered because apparently that's what happens when a developer builds a link page.
+The goal is to show a small number of things clearly:
 
----
+1. what I focus on
+2. what I have shipped
+3. the technologies I actually use
+4. where to find me
 
-## ✦ Built With
+## Featured work
 
-- HTML
-- CSS
+### StudyOS
+
+Full-stack student productivity platform with tasks, notes, focus sessions, progress tracking, XP, streaks and a leaderboard.
+
+- React
+- Node.js
+- Express
+- MongoDB
+- Firebase
+
+Live: https://studyos-one-omega.vercel.app/
+
+Source: https://github.com/Vaibh37/Studyos
+
+### QRify
+
+Lightweight privacy-focused QR generator with customization and offline PWA support.
+
 - JavaScript
+- Service Worker
+- Cache API
+- PWA
 
-No frameworks.
-No libraries.
-Just vanilla web.
+Source: https://github.com/Vaibh37/qrify
 
----
+## Stack
 
-## ✦ Features
+- Next.js 16
+- React 19
+- TypeScript
+- CSS
 
-- Responsive design
-- Smooth animations
-- Interactive elements
-- Custom cursor effects
-- Ambient background effects
-- Social links
-- Contact section
-- Mobile-friendly layout
-- Lightweight and dependency-free
+No component library and no animation dependency.
 
----
+## Run locally
 
-## ✦ Project Structure
+```bash
+npm install
+npm run dev
+```
+
+Open:
 
 ```text
-devvaibhav37-links/
-│
-├── index.html
-├── style.css
-├── script.js
-│
-└── assets/
-    └── profile.jpeg
+http://localhost:3000
+```
+
+Production build:
+
+```bash
+npm run build
+npm start
+```
+
+## Deploy
+
+This project is Vercel-ready.
+
+Import this repository into Vercel and deploy it as a Next.js project.
+
+No environment variables are required for the current site.
 
 ---
 
-Built and maintained by Vaibh37.
+Built and maintained by [Vaibh37](https://github.com/Vaibh37).
