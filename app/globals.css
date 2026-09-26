@@ -67,12 +67,14 @@ img {
 }
 
 .profile-rail {
-  position: sticky;
-  top: 32px;
-  min-height: calc(100svh - 64px);
+  position: static;
+  top: auto;
+  min-height: 0;
+  height: max-content;
+  overflow: visible;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   gap: 34px;
 }
 
@@ -981,9 +983,11 @@ img {
 /* Scroll behavior refinement */
 
 .profile-rail {
-  position: relative;
+  position: static;
   top: auto;
-  min-height: auto;
+  min-height: 0;
+  height: max-content;
+  overflow: visible;
   align-self: start;
   justify-content: flex-start;
 }
@@ -1023,15 +1027,18 @@ img {
 
 @media (min-width: 901px) {
   .profile-rail {
+    position: static;
     padding-bottom: 120px;
   }
 }
 
 @media (max-width: 900px) {
   .profile-rail {
-    position: relative;
+    position: static;
     top: auto;
-    min-height: auto;
+    min-height: 0;
+    height: auto;
+    overflow: visible;
     padding-bottom: 56px;
   }
 }
