@@ -14,7 +14,9 @@ The site uses:
 - real project screenshots
 - case-study style project sections
 - compact typography and controlled line lengths
-- subtle Framer Motion for entrance, reveal, image masking, and hover feedback
+- Japanese-inspired loading transition with `読み込み中`
+- subtle Japanese section labels
+- Framer Motion for entrance, stagger, image masking, section reveal, and hover feedback
 - reduced-motion support
 - responsive mobile layouts
 
