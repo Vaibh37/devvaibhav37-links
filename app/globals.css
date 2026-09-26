@@ -1053,3 +1053,172 @@ img {
     margin-top: 26px;
   }
 }
+
+
+/* Professional compact typography + sticky profile rail */
+
+@media (min-width: 901px) {
+  .profile-rail {
+    position: sticky;
+    top: 24px;
+    max-height: calc(100svh - 48px);
+    height: auto;
+    min-height: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    overscroll-behavior: contain;
+    padding-right: 10px;
+    padding-bottom: 24px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--line-strong) transparent;
+  }
+
+  .profile-rail::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  .profile-rail::-webkit-scrollbar-thumb {
+    background: var(--line-strong);
+    border-radius: 999px;
+  }
+
+  .profile-rail::-webkit-scrollbar-track {
+    background: transparent;
+  }
+}
+
+.identity h1 {
+  font-size: clamp(2rem, 2.6vw, 2.65rem);
+}
+
+.identity-copy {
+  font-size: 0.86rem;
+  line-height: 1.66;
+}
+
+.intro-section {
+  padding: 64px 0 80px;
+}
+
+.intro-section h2 {
+  max-width: 820px;
+  font-size: clamp(2.9rem, 5.4vw, 5.25rem);
+  line-height: 1;
+  letter-spacing: -0.06em;
+}
+
+.intro-copy {
+  max-width: 650px;
+  font-size: clamp(0.95rem, 1.15vw, 1.05rem);
+  line-height: 1.72;
+}
+
+.focus-grid {
+  margin-top: 56px;
+}
+
+.content-section {
+  padding: 96px 0;
+}
+
+.section-head {
+  margin-bottom: 52px;
+}
+
+.section-head h2 {
+  font-size: clamp(2.2rem, 4.1vw, 4rem);
+  line-height: 1.03;
+  letter-spacing: -0.05em;
+}
+
+.case-study + .case-study {
+  margin-top: 78px;
+}
+
+.case-copy h3 {
+  margin-top: 26px;
+  font-size: clamp(2.15rem, 3.8vw, 3.7rem);
+  line-height: 1.04;
+  letter-spacing: -0.05em;
+}
+
+.case-summary {
+  font-size: 0.94rem;
+}
+
+.about-lead p {
+  font-size: clamp(1.6rem, 2.75vw, 2.7rem);
+  line-height: 1.24;
+  letter-spacing: -0.035em;
+}
+
+.stack-row strong {
+  font-size: clamp(1.15rem, 1.8vw, 1.7rem);
+}
+
+.stack-row:first-child strong {
+  font-size: clamp(1.9rem, 3.1vw, 3rem);
+}
+
+.stack-small strong {
+  font-size: clamp(0.95rem, 1.35vw, 1.15rem);
+}
+
+.contact-block {
+  padding: 96px 0 72px;
+}
+
+.contact-block h2 {
+  font-size: clamp(2.6rem, 4.8vw, 4.6rem);
+  line-height: 1.02;
+  letter-spacing: -0.055em;
+}
+
+@media (max-width: 900px) {
+  .profile-rail {
+    position: relative;
+    top: auto;
+    max-height: none;
+    overflow: visible;
+    padding-right: 0;
+  }
+
+  .intro-section h2 {
+    font-size: clamp(2.8rem, 9vw, 4.5rem);
+  }
+}
+
+@media (max-width: 680px) {
+  .identity h1 {
+    font-size: 2.25rem;
+  }
+
+  .intro-section {
+    padding: 56px 0 68px;
+  }
+
+  .intro-section h2 {
+    font-size: clamp(2.7rem, 11vw, 3.9rem);
+  }
+
+  .content-section,
+  .contact-block {
+    padding: 76px 0;
+  }
+
+  .section-head h2 {
+    font-size: clamp(2.15rem, 9vw, 3.25rem);
+  }
+
+  .case-copy h3 {
+    font-size: clamp(2.05rem, 9vw, 3.2rem);
+  }
+
+  .about-lead p {
+    font-size: clamp(1.55rem, 7vw, 2.3rem);
+  }
+
+  .contact-block h2 {
+    font-size: clamp(2.6rem, 11vw, 3.8rem);
+  }
+}
