@@ -90,12 +90,6 @@ export const site = {
       meta: "Merged · 30 files · +1781 / -806",
       url: "https://github.com/Keshavcodes3/Animicon/pull/4",
     },
-    {
-      repo: "AgentPostmortem/Webhands",
-      title: "Reject unknown recipe step actions during validation",
-      meta: "Open · regression test included",
-      url: "https://github.com/AgentPostmortem/Webhands/pull/21",
-    },
   ],
   skills: [
     "Rust","C++","C","JavaScript","TypeScript","React","Next.js","Node.js","Express",
@@ -106,6 +100,7 @@ export const site = {
       title: "Making Sense of It — Part 1",
       date: "Sep 21, 2026",
       summary: "Part one of an eight-part technical writing series — learning by forcing fuzzy ideas into clear words.",
+      url: "https://x.com/devvaibhav37/status/2102037035406266642?s=20",
     },
   ],
 } as const;
