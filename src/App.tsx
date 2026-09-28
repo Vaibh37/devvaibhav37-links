@@ -9,6 +9,7 @@ import { OpenSource } from "./sections/OpenSource";
 import { TechStack } from "./sections/TechStack";
 import { GithubActivity } from "./sections/GithubActivity";
 import { Writing } from "./sections/Writing";
+import { Views } from "./sections/Views";
 import { Contact } from "./sections/Contact";
 import { Footer } from "./components/Footer";
 import { ScrollProgress } from "./components/ScrollProgress";
@@ -51,6 +52,7 @@ export default function App() {
         <TechStack />
         <Writing />
         <GithubActivity />
+        <Views />
         <Contact />
       </main>
       <Footer />
