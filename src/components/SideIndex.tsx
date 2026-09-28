@@ -23,11 +23,11 @@ export function SideIndex() {
       (entries) => {
         const visible = entries
           .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => {
-            const aDistance = Math.abs(a.boundingClientRect.top - window.innerHeight * 0.28);
-            const bDistance = Math.abs(b.boundingClientRect.top - window.innerHeight * 0.28);
-            return aDistance - bDistance;
-          });
+          .sort(
+            (a, b) =>
+              Math.abs(a.boundingClientRect.top - window.innerHeight * 0.28) -
+              Math.abs(b.boundingClientRect.top - window.innerHeight * 0.28),
+          );
 
         if (visible[0]?.target.id) setActive(visible[0].target.id);
       },
@@ -50,7 +50,7 @@ export function SideIndex() {
   };
 
   return (
-    <aside className="fixed left-[calc(50%+410px)] top-[24vh] z-30 hidden flex-col gap-3 xl:flex">
+    <aside className="fixed left-[calc(50%+500px)] top-[24vh] z-30 hidden flex-col gap-3 2xl:flex">
       <span className="mb-1 font-mono text-[10px] font-medium tracking-[0.2em] text-[var(--soft)]">INDEX</span>
       {items.map(([id, label]) => {
         const isActive = active === id;
@@ -58,7 +58,9 @@ export function SideIndex() {
           <button
             key={id}
             onClick={() => scrollTo(id)}
-            className={`group relative flex items-center gap-2 text-left font-mono text-[11px] transition-colors ${isActive ? "text-[var(--fg)]" : "text-[var(--soft)] hover:text-[var(--muted)]"}`}
+            className={`group relative flex items-center gap-2 text-left font-mono text-[11px] transition-colors ${
+              isActive ? "text-[var(--fg)]" : "text-[var(--soft)] hover:text-[var(--muted)]"
+            }`}
           >
             <span className="relative h-px w-4">
               {isActive ? (

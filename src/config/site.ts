@@ -92,8 +92,11 @@ export const site = {
     },
   ],
   skills: [
-    "Rust","C++","C","JavaScript","TypeScript","React","Next.js","Node.js","Express",
-    "MongoDB","MySQL","PostgreSQL","Docker","Git","GitHub","Vercel"
+    "Rust", "C++", "C", "JavaScript", "TypeScript", "HTML", "CSS",
+    "React", "Next.js", "Vite", "Tailwind CSS",
+    "Node.js", "Express", "REST APIs",
+    "MongoDB", "MySQL", "PostgreSQL", "Firebase",
+    "Docker", "Postman", "Git", "GitHub", "Vercel"
   ],
   writing: [
     {
