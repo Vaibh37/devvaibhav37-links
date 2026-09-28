@@ -1,83 +1,14 @@
-# Vaibhav Portfolio
+# Vaibhav — Portfolio
 
-A professional developer portfolio built with **Next.js**, **TypeScript**, and **Framer Motion**.
+Personal developer portfolio for Vaibhav, focused on Rust, C++, full-stack work, open source, and projects built while learning in public.
 
-## Design direction
+## Included
 
-This version intentionally avoids the usual developer-portfolio clichés.
+- Responsive desktop and mobile layout
+- Dark/light theme
+- Ctrl/Cmd + K command palette
+- Live IST clock
+- Runtime GitHub public repo and follower stats
+- Selected projects and open-source work
 
-The site uses:
-
-- a restrained off-white / charcoal / cobalt palette
-- a profile rail that scrolls naturally with the page
-- a normal rectangular portrait
-- real project screenshots
-- case-study style project sections
-- compact typography and controlled line lengths
-- Japanese-inspired loading transition with `読み込み中`
-- Framer Motion for entrance, stagger, image masking, hover feedback, and scroll-linked parallax
-- reduced-motion support
-- responsive mobile layouts
-
-## Focus
-
-- Rust
-- C++
-- DSA and backend fundamentals
-- MERN for full-stack web applications
-
-## Selected work
-
-### StudyOS
-
-A full-stack student productivity platform that combines tasks, notes, subjects, focus sessions, calendars, progress tracking, XP, streaks, and a leaderboard.
-
-**Frontend:** React, Vite, Firebase Authentication  
-**Backend:** Node.js, Express, MongoDB  
-**Local mode:** IndexedDB guest storage  
-**Deployment:** Vercel + Render
-
-- Live: https://studyos-one-omega.vercel.app/
-- Source: https://github.com/Vaibh37/Studyos
-
-### QRify
-
-A lightweight QR generator that works entirely in the browser and supports offline usage.
-
-**Core:** HTML, CSS, JavaScript  
-**Offline:** Service Worker + Cache API  
-**Features:** customization, contrast checks, PNG download, clipboard support
-
-- Source: https://github.com/Vaibh37/qrify
-
-## Portfolio stack
-
-- Next.js 16
-- React 19
-- TypeScript
-- Framer Motion
-- CSS
-
-## Local development
-
-```bash
-npm install
-npm run dev
-```
-
-Open:
-
-```text
-http://localhost:3000
-```
-
-Production build:
-
-```bash
-npm run build
-npm start
-```
-
-## Deployment
-
-Vercel-ready. No environment variables are required.
+The site is zero-dependency static HTML/CSS/JavaScript and can be deployed directly to Vercel or any static hosting provider.
