@@ -11,6 +11,8 @@ import { GithubActivity } from "./sections/GithubActivity";
 import { Writing } from "./sections/Writing";
 import { Contact } from "./sections/Contact";
 import { Footer } from "./components/Footer";
+import { MotionCat } from "./components/MotionCat";
+import { ScrollProgress } from "./components/ScrollProgress";
 
 export default function App() {
   const [paletteOpen, setPaletteOpen] = useState(false);
@@ -39,6 +41,8 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-[var(--bg)] text-[var(--fg)]">
+      <ScrollProgress />
+      <MotionCat />
       <Nav onOpenPalette={() => setPaletteOpen(true)} light={light} onToggleTheme={() => setLight((v) => !v)} />
       <SideIndex />
       <main>
