@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 
-export function Shell({ children, className = "" }: { children: ReactNode; className?: string }) {
+export function Shell({ children, className = "" }: { children?: ReactNode; className?: string }) {
   return (
     <div className={`relative mx-auto w-full max-w-[760px] border-x border-dashed border-[var(--line)] ${className}`}>
       {children}
