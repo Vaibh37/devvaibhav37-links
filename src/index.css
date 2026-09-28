@@ -5,15 +5,15 @@
 :root{
   --bg:#090909;--fg:#f3f0e8;--muted:#aaa69e;--soft:#68645f;--line:rgba(255,255,255,.11);
   --stripe:rgba(255,255,255,.055);--hover:rgba(255,255,255,.055);--card:#101010;--accent:#d2493f;
-  --nav:rgba(9,9,9,.82);
+  --nav:rgba(9,9,9,.82);--cat-body:#f3f0e8;--cat-line:#171717;
 }
 .light{
   --bg:#f8f6f1;--fg:#171717;--muted:#5f5b56;--soft:#9b9690;--line:rgba(0,0,0,.11);
   --stripe:rgba(0,0,0,.055);--hover:rgba(0,0,0,.045);--card:#fff;--accent:#a93229;
-  --nav:rgba(248,246,241,.86);
+  --nav:rgba(248,246,241,.86);--cat-body:#171717;--cat-line:#f8f6f1;
 }
 *{border-color:var(--line)}
-html{scroll-behavior:smooth;background:var(--bg);color:var(--fg)}
+html{scroll-behavior:smooth;scroll-padding-top:72px;scrollbar-gutter:stable;background:var(--bg);color:var(--fg)}
 body{margin:0;min-width:320px;min-height:100vh;background:var(--bg);color:var(--fg);font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
 body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:200;opacity:.025;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 ::selection{background:var(--fg);color:var(--bg)}
@@ -34,3 +34,9 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:200;op
 .mini-link{display:inline-flex;align-items:center;gap:.3rem;border:1px solid var(--line);border-radius:.4rem;padding:.35rem .5rem;font-family:"DM Mono",monospace;font-size:9px;color:var(--muted)}.mini-link:hover{color:var(--fg)}
 .contrib-0{background:color-mix(in srgb,var(--fg) 7%,transparent)}.contrib-1{background:color-mix(in srgb,var(--accent) 28%,transparent)}.contrib-2{background:color-mix(in srgb,var(--accent) 50%,transparent)}.contrib-3{background:color-mix(in srgb,var(--accent) 72%,transparent)}.contrib-4{background:var(--accent)}
 @media(max-width:640px){.hero-grid{background-size:30px 30px}}
+
+section{scroll-margin-top:72px}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}

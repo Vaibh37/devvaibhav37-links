@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
 const items = [
@@ -8,26 +9,45 @@ const items = [
   ["writing", "Writing"],
   ["github", "GitHub"],
   ["contact", "Contact"],
-];
+] as const;
 
 export function SideIndex() {
-  const [active, setActive] = useState("about");
+  const [active, setActive] = useState<string>("about");
 
   useEffect(() => {
-    const onScroll = () => {
-      const y = window.scrollY + 220;
-      for (const [id] of items) {
-        const el = document.getElementById(id);
-        if (el && y >= el.offsetTop && y < el.offsetTop + el.offsetHeight) {
-          setActive(id);
-          break;
-        }
-      }
-    };
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    const elements = items
+      .map(([id]) => document.getElementById(id))
+      .filter((el): el is HTMLElement => Boolean(el));
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => {
+            const aDistance = Math.abs(a.boundingClientRect.top - window.innerHeight * 0.28);
+            const bDistance = Math.abs(b.boundingClientRect.top - window.innerHeight * 0.28);
+            return aDistance - bDistance;
+          });
+
+        if (visible[0]?.target.id) setActive(visible[0].target.id);
+      },
+      {
+        rootMargin: "-18% 0px -62% 0px",
+        threshold: [0, 0.08, 0.2, 0.5],
+      },
+    );
+
+    elements.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
   }, []);
+
+  const scrollTo = (id: string) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const top = el.getBoundingClientRect().top + window.scrollY - 68;
+    window.history.replaceState(null, "", `#${id}`);
+    window.scrollTo({ top, behavior: "smooth" });
+  };
 
   return (
     <aside className="fixed left-[calc(50%+410px)] top-[24vh] z-30 hidden flex-col gap-3 xl:flex">
@@ -35,14 +55,29 @@ export function SideIndex() {
       {items.map(([id, label]) => {
         const isActive = active === id;
         return (
-          <a
+          <button
             key={id}
-            href={`#${id}`}
-            className={`group flex items-center gap-2 font-mono text-[11px] transition ${isActive ? "text-[var(--fg)]" : "text-[var(--soft)] hover:text-[var(--muted)]"}`}
+            onClick={() => scrollTo(id)}
+            className={`group relative flex items-center gap-2 text-left font-mono text-[11px] transition-colors ${isActive ? "text-[var(--fg)]" : "text-[var(--soft)] hover:text-[var(--muted)]"}`}
           >
-            <span className={`h-px bg-current transition-all ${isActive ? "w-4" : "w-0 group-hover:w-2"}`} />
-            {label}
-          </a>
+            <span className="relative h-px w-4">
+              {isActive ? (
+                <motion.span
+                  layoutId="side-index-active"
+                  className="absolute inset-y-0 left-0 w-4 bg-current"
+                  transition={{ type: "spring", stiffness: 420, damping: 34 }}
+                />
+              ) : (
+                <span className="absolute inset-y-0 left-0 w-0 bg-current transition-all duration-200 group-hover:w-2" />
+              )}
+            </span>
+            <motion.span
+              animate={{ x: isActive ? 2 : 0 }}
+              transition={{ type: "spring", stiffness: 420, damping: 32 }}
+            >
+              {label}
+            </motion.span>
+          </button>
         );
       })}
     </aside>
