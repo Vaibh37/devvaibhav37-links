@@ -1,14 +1,27 @@
 # Vaibhav — Portfolio
 
-Personal developer portfolio for Vaibhav, focused on Rust, C++, full-stack work, open source, and projects built while learning in public.
+A component-based React + Vite + TypeScript portfolio with a retro editorial/terminal visual system.
 
-## Included
+## Stack
 
-- Responsive desktop and mobile layout
+- React
+- Vite
+- TypeScript
+- Tailwind CSS
+- Framer Motion
+- Lucide
+- Vercel Analytics
+
+## Features
+
+- Dashed editorial shell and striped section bands
+- Sticky section index
+- Animated/typewriter hero
+- Expandable project cards
+- Open-source contribution section
+- Live GitHub contribution graph with graceful fallback
+- Searchable Ctrl/Cmd + K command palette
 - Dark/light theme
-- Ctrl/Cmd + K command palette
-- Live IST clock
-- Runtime GitHub public repo and follower stats
-- Selected projects and open-source work
+- Responsive layout
 
-The site is zero-dependency static HTML/CSS/JavaScript and can be deployed directly to Vercel or any static hosting provider.
+Content and code are original to this portfolio; the interaction direction was inspired by modern terminal/editorial developer portfolios.
