@@ -8,7 +8,6 @@ const items = [
   ["stack", "Stack"],
   ["writing", "Writing"],
   ["github", "GitHub"],
-  ["views", "Views"],
   ["contact", "Contact"],
 ] as const;
 
@@ -32,10 +31,7 @@ export function SideIndex() {
 
         if (visible[0]?.target.id) setActive(visible[0].target.id);
       },
-      {
-        rootMargin: "-18% 0px -62% 0px",
-        threshold: [0, 0.08, 0.2, 0.5],
-      },
+      { rootMargin: "-18% 0px -62% 0px", threshold: [0, 0.08, 0.2, 0.5] },
     );
 
     elements.forEach((el) => observer.observe(el));
