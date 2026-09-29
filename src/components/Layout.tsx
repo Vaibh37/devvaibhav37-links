@@ -41,9 +41,9 @@ export function SectionHeader({
           whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.65 }}
           transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-          className="flex items-center justify-between gap-4 px-6 py-3.5 sm:px-8"
+          className="flex items-end justify-between gap-4 px-6 py-5 sm:px-8 sm:py-6"
         >
-          <h2 className="font-serif text-2xl tracking-wide sm:text-[27px]">{title}</h2>
+          <div><span className="mb-1 block font-mono text-[8px] uppercase tracking-[.2em] text-[var(--soft)]">section</span><h2 className="font-sans text-[26px] font-extrabold tracking-[-.055em] sm:text-[32px]">{title}</h2></div>
           {aside}
         </motion.div>
 
