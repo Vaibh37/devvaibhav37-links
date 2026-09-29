@@ -32,7 +32,7 @@ export function OpenSource() {
                   <strong className="mt-1 block text-sm font-medium">{c.title}</strong>
                   <span className="mt-1 block text-[10px] text-[var(--muted)]">{c.meta}</span>
                 </span>
-                <ArrowUpRight size={14} className="mt-1 text-[var(--soft)] transition-colors group-hover:text-[var(--accent)]" />
+                <ArrowUpRight size={14} className="mt-1 text-[var(--soft)] transition-colors group-hover:text-[var(--fg)]" />
               </motion.a>
             </Reveal>
           ))}
