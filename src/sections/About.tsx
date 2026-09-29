@@ -21,7 +21,7 @@ export function About() {
           <Reveal y={10}>
             <div className="mb-6 flex items-center gap-2 text-[var(--soft)]">
               <span className="inline-flex items-center gap-1.5 font-mono text-[9px] uppercase tracking-[.14em]">
-                <Eye size={12} className="text-[var(--accent)]" />
+                <Eye size={12} className="text-[var(--fg)]" />
                 profile
               </span>
               <img src={viewBadge} alt="Portfolio view count" className="h-[18px] max-w-full" />
@@ -50,7 +50,7 @@ export function About() {
                       transition={{ type: "spring", stiffness: 420, damping: 34 }}
                       className="group flex items-center gap-3 border-b border-[var(--line)] py-2.5 text-xs last:border-b-0"
                     >
-                      <span className="font-mono text-[9px] text-[var(--accent)]">0{index + 1}</span>
+                      <span className="font-mono text-[9px] text-[var(--fg)]">0{index + 1}</span>
                       <span className="text-[var(--muted)] transition-colors group-hover:text-[var(--fg)]">{item}</span>
                     </motion.div>
                   ))}
