@@ -128,7 +128,7 @@ export function Hero({ onOpenPalette }: { onOpenPalette: () => void }) {
               <div className="relative flex min-h-40 items-end justify-between p-5 sm:min-h-52 sm:p-8">
                 <div>
                   <motion.span initial={{opacity:0,x:-12}} animate={{opacity:1,x:0}} transition={{delay:.45,duration:.5}} className="font-mono text-[10px] uppercase tracking-[.18em] text-[var(--soft)]">signal / 037</motion.span>
-                  <motion.p initial={{opacity:0,y:14}} animate={{opacity:1,y:0}} transition={{delay:.18,duration:.7,ease:[.22,1,.36,1]}} className="mt-3 max-w-xl font-serif text-4xl leading-[.95] sm:text-[58px]">
+                  <motion.p initial={{opacity:0,y:14}} animate={{opacity:1,y:0}} transition={{delay:.18,duration:.7,ease:[.22,1,.36,1]}} className="mt-4 max-w-[700px] font-serif text-[clamp(2.8rem,7vw,4.9rem)] leading-[.9] tracking-[-.035em]">
                     Building slowly. Learning deeply. Shipping what survives.
                   </motion.p>
                 </div>
@@ -154,7 +154,7 @@ export function Hero({ onOpenPalette }: { onOpenPalette: () => void }) {
                   className="h-24 w-24 rounded-xl border-4 border-[var(--bg)] object-cover grayscale sm:h-28 sm:w-28"
                 />
                 <div className="pb-1">
-                  <h1 className="font-serif text-5xl leading-none sm:text-6xl">{site.name}</h1>
+                  <h1 className="font-sans text-5xl font-extrabold leading-none tracking-[-.07em] sm:text-6xl">{site.name}</h1>
                   <p className="mt-2 h-5 font-mono text-xs text-[var(--muted)]">
                     {text}
                     <span className="ml-1 inline-block h-3.5 w-px animate-pulse bg-[var(--fg)]" />
@@ -177,7 +177,7 @@ export function Hero({ onOpenPalette }: { onOpenPalette: () => void }) {
                 hidden: { opacity: 0, y: 14 },
                 show: { opacity: 1, y: 0, transition: { duration: 0.55 } },
               }}
-              className="mt-7 max-w-2xl text-[15px] leading-7 text-[var(--muted)] sm:text-base"
+              className="mt-7 max-w-2xl font-sans text-[15px] font-medium leading-7 text-[var(--fg)] opacity-[.78] sm:text-base"
             >
               {site.tagline}
             </motion.p>
@@ -220,7 +220,7 @@ export function Hero({ onOpenPalette }: { onOpenPalette: () => void }) {
                   className="bg-[var(--card)] p-4"
                 >
                   <span className="font-mono text-[9px] uppercase tracking-[.16em] text-[var(--soft)]">{label}</span>
-                  <p className="mt-1 text-xs text-[var(--muted)]">{value}</p>
+                  <p className="mt-1 text-xs font-medium leading-5 text-[var(--muted)]">{value}</p>
                 </motion.div>
               ))}
             </motion.div>
