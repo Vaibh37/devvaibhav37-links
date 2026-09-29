@@ -41,7 +41,7 @@ export default function App() {
     <div className="min-h-screen bg-[var(--bg)] text-[var(--fg)]">
       <Nav onOpenPalette={() => setPaletteOpen(true)} light={light} onToggleTheme={() => setLight((v) => !v)} />
       <SideIndex />
-      <main>
+      <main className="pt-[76px]">
         <Hero onOpenPalette={() => setPaletteOpen(true)} />
         <About />
         <Projects />
