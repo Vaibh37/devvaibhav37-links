@@ -48,7 +48,7 @@ const brands: Record<string, Brand> = {
   "Tailwind CSS": { icon: SiTailwindcss, color: "#06b6d4", group: "frontend" },
   "Node.js": { icon: SiNodedotjs, color: "#5fa04e", group: "backend" },
   Express: { icon: SiExpress, color: "var(--fg)", group: "backend" },
-  "REST APIs": { color: "#d2493f", group: "backend" },
+  "REST APIs": { color: "#f7f7f5", group: "backend" },
   MongoDB: { icon: SiMongodb, color: "#47a248", group: "data" },
   MySQL: { icon: SiMysql, color: "#4479a1", group: "data" },
   PostgreSQL: { icon: SiPostgresql, color: "#4169e1", group: "data" },
