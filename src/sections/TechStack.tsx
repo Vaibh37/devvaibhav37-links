@@ -122,7 +122,7 @@ export function TechStack() {
                     </span>
                   </div>
 
-                  <span className="absolute bottom-0 left-0 h-[2px] w-0 bg-[var(--accent)] transition-all duration-300 group-hover:w-full" />
+                  <span className="absolute bottom-0 left-0 h-[2px] w-0 bg-[var(--fg)] transition-all duration-300 group-hover:w-full" />
                 </motion.div>
               );
             })}
