@@ -57,30 +57,23 @@ export function Nav({
   };
 
   return (
-    <header className="sticky top-0 z-50 border-b border-[var(--line)] bg-[color:var(--nav)] backdrop-blur-xl">
-      <div className="mx-auto grid h-14 max-w-[920px] grid-cols-[1fr_auto_1fr] items-center border-x border-dashed border-[var(--line)] px-3 sm:px-5">
+    <header className="sticky top-3 z-50 mx-auto w-[calc(100%-24px)] max-w-[980px] rounded-2xl border border-[var(--line)] bg-[color:var(--nav)] shadow-[0_14px_50px_rgba(0,0,0,.18)] backdrop-blur-2xl">
+      <div className="grid h-14 grid-cols-[1fr_auto_1fr] items-center px-3 sm:px-4">
         <button
           onClick={() => go("top")}
-          className="flex w-fit items-center gap-2 font-mono text-xs tracking-[0.08em]"
+          className="flex w-fit items-center font-sans text-sm font-bold tracking-[-.02em]"
         >
-          <motion.span
-            whileHover={{ rotate: -5, scale: 1.06 }}
-            whileTap={{ scale: 0.94 }}
-            className="grid h-7 w-7 place-items-center border border-[var(--line)] text-[var(--fg)]"
-          >
-            V
-          </motion.span>
-          <span className="hidden lg:block">{site.name.toLowerCase()}.dev</span>
+          <motion.span whileHover={{ x: 2 }} whileTap={{ scale: 0.96 }}>Vaibhav37</motion.span>
         </button>
 
-        <nav className="hidden items-center gap-1 md:flex">
+        <nav className="hidden items-center gap-0.5 rounded-full border border-[var(--line)] bg-[var(--bg)]/50 p-1 md:flex">
           {navItems.map(([id, label]) => {
             const selected = active === id;
             return (
               <button
                 key={id}
                 onClick={() => go(id)}
-                className={`relative rounded-full px-3 py-1.5 font-mono text-[10px] lowercase transition-colors ${
+                className={`relative rounded-full px-3.5 py-1.5 font-sans text-[11px] font-medium lowercase transition-colors ${
                   selected ? "text-[var(--fg)]" : "text-[var(--soft)] hover:text-[var(--fg)]"
                 }`}
               >
