@@ -5,7 +5,7 @@ import { Reveal } from "../components/Reveal";
 import { site } from "../config/site";
 
 const viewBadge =
-  "https://api.visitorbadge.io/api/visitors?path=vaibh37-portfolio&label=views&labelColor=%23090909&countColor=%23d2493f";
+  "https://api.visitorbadge.io/api/visitors?path=vaibh37-portfolio&label=views&labelColor=%23090909&countColor=%23f7f7f5";
 
 export function About() {
   return (
