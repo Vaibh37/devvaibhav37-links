@@ -72,7 +72,7 @@ export function Hero({ onOpenPalette }: { onOpenPalette: () => void }) {
       <Shell>
         <motion.div
           style={{ y: glowY }}
-          className="pointer-events-none absolute -right-28 top-20 h-72 w-72 rounded-full bg-[var(--accent)] opacity-[0.07] blur-[100px]"
+          className="pointer-events-none absolute -right-28 top-20 h-72 w-72 rounded-full bg-[var(--fg)] opacity-[0.045] blur-[110px]"
         />
 
         <motion.div
@@ -120,7 +120,7 @@ export function Hero({ onOpenPalette }: { onOpenPalette: () => void }) {
               className="relative mb-9 overflow-hidden rounded-xl border border-[var(--line)] bg-[var(--card)] shadow-[0_18px_80px_rgba(0,0,0,.16)]"
             >
               <motion.div
-                className="absolute inset-0 bg-radial-red opacity-60"
+                className="absolute inset-0 bg-radial-mono opacity-70"
                 animate={reduceMotion ? undefined : { scale: [1, 1.04, 1], opacity: [0.52, 0.66, 0.52] }}
                 transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
               />
@@ -131,7 +131,7 @@ export function Hero({ onOpenPalette }: { onOpenPalette: () => void }) {
                     signal / 037
                   </span>
                   <p className="mt-3 max-w-xl font-serif text-4xl leading-[.95] sm:text-[58px]">
-                    Betting it all on learning the hard things properly.
+                    Building slowly. Learning deeply. Shipping what survives.
                   </p>
                 </div>
                 <span className="hidden font-mono text-[10px] text-[var(--soft)] sm:block">
