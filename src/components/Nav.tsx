@@ -56,8 +56,8 @@ export function Nav({
   };
 
   return (
-    <header className="fixed left-1/2 top-3 z-50 w-[calc(100%-24px)] max-w-[980px] -translate-x-1/2 rounded-2xl border border-[var(--line)] bg-[color:var(--nav)] shadow-[0_14px_50px_rgba(0,0,0,.22)] backdrop-blur-2xl">
-      <div className="grid h-14 grid-cols-[1fr_auto_1fr] items-center px-3 sm:px-4">
+    <header className="fixed inset-x-0 top-0 z-[100] pointer-events-none px-3 pt-3">
+      <div className="pointer-events-auto mx-auto grid h-14 max-w-[980px] grid-cols-[1fr_auto_1fr] items-center rounded-2xl border border-[var(--line)] bg-[color:var(--nav)] px-3 shadow-[0_14px_50px_rgba(0,0,0,.28)] backdrop-blur-2xl sm:px-4">
         <button
           onClick={() => go("top")}
           className="flex w-fit items-center font-sans text-[15px] font-bold tracking-[-.045em] sm:text-base"
@@ -124,7 +124,7 @@ export function Nav({
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] }}
-            className="overflow-hidden border-t border-[var(--line)] bg-[var(--bg)] md:hidden"
+            className="pointer-events-auto mx-auto mt-1 max-w-[980px] overflow-hidden rounded-xl border border-[var(--line)] bg-[var(--bg)] shadow-2xl md:hidden"
           >
             <div className="mx-auto grid max-w-[920px] grid-cols-5 gap-px bg-[var(--line)]">
               {navItems.map(([id, label]) => (
