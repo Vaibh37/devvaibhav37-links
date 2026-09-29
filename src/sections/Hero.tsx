@@ -16,6 +16,7 @@ export function Hero({ onOpenPalette }: { onOpenPalette: () => void }) {
   const heroY = useTransform(scrollYProgress, [0, 1], [0, reduceMotion ? 0 : 72]);
   const heroOpacity = useTransform(scrollYProgress, [0, 0.85], [1, 0.42]);
   const glowY = useTransform(scrollYProgress, [0, 1], [0, reduceMotion ? 0 : 120]);
+  const bannerImageY = useTransform(scrollYProgress, [0, 1], [0, reduceMotion ? 0 : -12]);
 
   const [role, setRole] = useState(0);
   const [text, setText] = useState("");
@@ -120,10 +121,25 @@ export function Hero({ onOpenPalette }: { onOpenPalette: () => void }) {
               transition={{ type: "spring", stiffness: 240, damping: 24 }}
               className="relative mx-auto mb-9 w-full max-w-[1080px] overflow-hidden rounded-xl border border-[var(--line)] bg-[var(--card)] shadow-[0_14px_55px_rgba(0,0,0,.13)]"
             >
-              <img
+              <motion.img
                 src="/shanks-banner.png"
                 alt="Are you that afraid of the new era?"
-                className="block h-auto w-full"
+                width={1893}
+                height={831}
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
+                style={{ y: bannerImageY }}
+                variants={{
+                  hidden: { opacity: 0, scale: 1.025 },
+                  show: {
+                    opacity: 1,
+                    scale: 1.008,
+                    transition: { duration: 0.9, ease: [0.22, 1, 0.36, 1] },
+                  },
+                }}
+                whileHover={reduceMotion ? undefined : { scale: 1.018 }}
+                className="block h-auto w-full origin-center will-change-transform"
               />
               <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-white/5" />
             </motion.div>
