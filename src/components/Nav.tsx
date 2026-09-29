@@ -56,7 +56,7 @@ export function Nav({
   };
 
   return (
-    <header id="site-nav" className="relative z-50 px-3 pt-3">
+    <header id="site-nav" className="pointer-events-none px-3 pt-3">
       <div className="pointer-events-auto mx-auto grid h-14 max-w-[980px] grid-cols-[1fr_auto_1fr] items-center rounded-2xl border border-[var(--line)] bg-[color:var(--nav)] px-3 shadow-[0_14px_50px_rgba(0,0,0,.28)] backdrop-blur-2xl sm:px-4">
         <button
           onClick={() => go("top")}
