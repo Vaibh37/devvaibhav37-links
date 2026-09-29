@@ -45,4 +45,11 @@ section{scroll-margin-top:96px}
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
 }
 
-
+/* Keep the primary navigation visible while the document scrolls. */
+#site-nav{
+  position:fixed;
+  inset:0 0 auto 0;
+  width:100%;
+  z-index:9999;
+  transform:translateZ(0);
+}
