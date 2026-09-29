@@ -1,7 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, Moon, Search, Sun, X } from "lucide-react";
 import { useEffect, useState } from "react";
-import { site } from "../config/site";
 
 const navItems = [
   ["top", "home"],
@@ -50,30 +49,30 @@ export function Nav({
   const go = (id: string) => {
     const element = document.getElementById(id);
     if (!element) return;
-    const top = element.getBoundingClientRect().top + window.scrollY - 70;
+    const top = element.getBoundingClientRect().top + window.scrollY - 92;
     window.scrollTo({ top, behavior: "smooth" });
     window.history.replaceState(null, "", id === "top" ? window.location.pathname : `#${id}`);
     setMenuOpen(false);
   };
 
   return (
-    <header className="sticky top-3 z-50 mx-auto w-[calc(100%-24px)] max-w-[980px] rounded-2xl border border-[var(--line)] bg-[color:var(--nav)] shadow-[0_14px_50px_rgba(0,0,0,.18)] backdrop-blur-2xl">
+    <header className="fixed left-1/2 top-3 z-50 w-[calc(100%-24px)] max-w-[980px] -translate-x-1/2 rounded-2xl border border-[var(--line)] bg-[color:var(--nav)] shadow-[0_14px_50px_rgba(0,0,0,.22)] backdrop-blur-2xl">
       <div className="grid h-14 grid-cols-[1fr_auto_1fr] items-center px-3 sm:px-4">
         <button
           onClick={() => go("top")}
-          className="flex w-fit items-center font-sans text-sm font-bold tracking-[-.02em]"
+          className="flex w-fit items-center font-sans text-[15px] font-bold tracking-[-.045em] sm:text-base"
         >
           <motion.span whileHover={{ x: 2 }} whileTap={{ scale: 0.96 }}>Vaibhav37</motion.span>
         </button>
 
-        <nav className="hidden items-center gap-0.5 rounded-full border border-[var(--line)] bg-[var(--bg)]/50 p-1 md:flex">
+        <nav className="hidden items-center gap-0.5 rounded-full border border-[var(--line)] bg-[var(--card)] p-1 md:flex">
           {navItems.map(([id, label]) => {
             const selected = active === id;
             return (
               <button
                 key={id}
                 onClick={() => go(id)}
-                className={`relative rounded-full px-3.5 py-1.5 font-sans text-[11px] font-medium lowercase transition-colors ${
+                className={`relative rounded-full px-3.5 py-1.5 font-sans text-xs font-semibold lowercase transition-colors ${
                   selected ? "text-[var(--fg)]" : "text-[var(--soft)] hover:text-[var(--fg)]"
                 }`}
               >
