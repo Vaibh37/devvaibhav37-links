@@ -26,14 +26,14 @@ export function Projects() {
               <Reveal key={project.title} delay={index * 0.05} y={18}>
                 <motion.article
                   layout={!reduceMotion}
-                  className="group"
+                  className="group px-3 py-3 sm:px-5 sm:py-4"
                   transition={{ layout: { type: "spring", stiffness: 260, damping: 30 } }}
                 >
                   <motion.button
                     onClick={() => setOpen(expanded ? -1 : index)}
                     whileHover={reduceMotion ? undefined : { x: 4 }}
                     transition={{ type: "spring", stiffness: 420, damping: 34 }}
-                    className="grid w-full grid-cols-[44px_1fr_auto] items-start gap-3 px-4 py-7 text-left sm:grid-cols-[54px_1fr_auto] sm:px-8"
+                    className="grid w-full grid-cols-[44px_1fr_auto] items-start gap-3 rounded-2xl border border-[var(--line)] bg-[var(--card)] px-4 py-7 text-left shadow-[0_18px_70px_rgba(0,0,0,.10)] transition-colors hover:bg-[var(--hover)] sm:grid-cols-[54px_1fr_auto] sm:px-8"
                   >
                     <span className="pt-1 font-mono text-[10px] text-[var(--soft)]">0{index + 1}</span>
                     <span>
@@ -68,7 +68,7 @@ export function Projects() {
                         transition={{ duration: 0.42, ease: [0.22, 1, 0.36, 1] }}
                         className="overflow-hidden"
                       >
-                        <div className="grid gap-6 border-t border-dashed border-[var(--line)] bg-[var(--card)] px-6 py-7 sm:grid-cols-[1fr_240px] sm:px-8">
+                        <div className="mx-2 grid gap-6 rounded-b-2xl border-x border-b border-dashed border-[var(--line)] bg-[var(--card)] px-6 py-7 sm:grid-cols-[1fr_260px] sm:px-8">
                           <motion.div
                             initial={reduceMotion ? false : { opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
@@ -97,7 +97,7 @@ export function Projects() {
                             initial={reduceMotion ? false : { opacity: 0, scale: 0.97 }}
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ delay: 0.1, duration: 0.35 }}
-                            className="terminal-card min-h-40 p-4"
+                            className="terminal-card min-h-44 p-5"
                           >
                             <div className="mb-4 flex gap-1.5">
                               <i />
