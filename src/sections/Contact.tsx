@@ -16,13 +16,13 @@ export function Contact() {
       <Shell>
         <div className="px-6 py-12 sm:px-8 sm:py-16">
           <Reveal y={22}>
-            <p className="max-w-2xl font-serif text-4xl leading-[1.02] sm:text-6xl">
+            <p className="max-w-3xl font-serif text-5xl leading-[.96] tracking-[-.025em] sm:text-7xl">
               Have something worth building, fixing, or arguing about?
             </p>
           </Reveal>
 
           <Reveal delay={0.08} y={16}>
-            <p className="mt-5 max-w-xl text-sm leading-7 text-[var(--muted)]">
+            <p className="mt-6 max-w-xl text-[15px] font-medium leading-7 text-[var(--muted)]">
               A useful project, an open-source issue, or just a good technical conversation — my inbox is open.
             </p>
           </Reveal>
