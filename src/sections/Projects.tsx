@@ -19,8 +19,8 @@ function ProjectCard({
   const reducedMotion = useReducedMotion();
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
-  const rotateX = useSpring(useTransform(mouseY, [-200, 200], [2, -2]), { stiffness: 170, damping: 26 });
-  const rotateY = useSpring(useTransform(mouseX, [-260, 260], [-2.5, 2.5]), { stiffness: 170, damping: 26 });
+  const rotateX = useSpring(useTransform(mouseY, [-200, 200], [3.5, -3.5]), { stiffness: 170, damping: 26 });
+  const rotateY = useSpring(useTransform(mouseX, [-260, 260], [-4, 4]), { stiffness: 170, damping: 26 });
   const shineX = useTransform(mouseX, [-260, 260], ["15%", "85%"]);
   const shineY = useTransform(mouseY, [-200, 200], ["15%", "85%"]);
   const shine = useTransform([shineX, shineY], ([x, y]) =>
@@ -36,7 +36,7 @@ function ProjectCard({
       }}
       onMouseLeave={() => { mouseX.set(0); mouseY.set(0); }}
       style={reducedMotion ? undefined : { rotateX, rotateY, transformPerspective: 1100 }}
-      whileHover={reducedMotion ? undefined : { y: -6 }}
+      whileHover={reducedMotion ? undefined : { y: -9, scale: 1.012 }}
       transition={{ type: "spring", stiffness: 220, damping: 24 }}
       className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-[var(--line)] bg-[var(--card)] shadow-[0_18px_55px_rgba(0,0,0,.12)] transition-[border-color,box-shadow] duration-300 hover:border-[color:var(--muted)] hover:shadow-[0_24px_75px_rgba(0,0,0,.24)]"
     >
@@ -59,20 +59,20 @@ function ProjectCard({
           <span className="font-mono text-[11px] font-medium text-[var(--muted)]">{project.year} / 0{index + 1}</span>
         </div>
 
-        <div className="relative mt-12">
+        <motion.div className="relative mt-12" initial={reducedMotion ? false : { opacity: 0, y: 14 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .65 }} transition={{ duration: .55, ease }}>
           <p className="mb-2 font-mono text-[11px] font-medium uppercase tracking-[.12em] text-[var(--muted)]">{project.label}</p>
           <motion.h3
-            className="font-sans text-[clamp(2.25rem,5vw,3.5rem)] font-bold leading-[1.05] tracking-[-.055em] text-[var(--fg)]"
+            className="font-sans text-[clamp(2.35rem,5vw,3.7rem)] font-extrabold leading-[1.02] tracking-[-.065em] text-[var(--fg)] [text-shadow:0_1px_24px_rgba(255,255,255,.08)]"
             whileHover={reducedMotion ? undefined : { x: 5 }}
             transition={{ type: "spring", stiffness: 260, damping: 24 }}
           >
             {project.title}
           </motion.h3>
-        </div>
+        </motion.div>
       </div>
 
       <div className="relative flex flex-1 flex-col p-6 sm:p-7">
-        <p className="max-w-[45ch] font-sans text-[15px] font-medium leading-[1.8] text-[var(--fg)] opacity-85">
+        <p className="max-w-[46ch] font-sans text-[15px] font-medium leading-[1.8] text-[var(--fg)] opacity-[.94]">
           {project.blurb}
         </p>
 
@@ -81,8 +81,8 @@ function ProjectCard({
             <motion.span
               key={tech}
               whileHover={reducedMotion ? undefined : { y: -3, scale: 1.04 }}
-              transition={{ type: "spring", stiffness: 350, damping: 23, delay: i * 0.008 }}
-              className="rounded-lg border border-[var(--line)] bg-[var(--bg)] px-2.5 py-1.5 font-sans text-xs font-semibold text-[var(--muted)]"
+              transition={{ type: "spring", stiffness: 380, damping: 21, delay: i * 0.008 }}
+              className="rounded-lg border border-[var(--line)] bg-[var(--bg)] px-2.5 py-1.5 font-sans text-xs font-semibold text-[var(--fg)] opacity-80"
             >
               {tech}
             </motion.span>
