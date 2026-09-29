@@ -49,7 +49,7 @@ export function SectionHeader({
 
         {!reduceMotion && (
           <motion.span
-            className="absolute bottom-0 left-0 h-px origin-left bg-[var(--accent)]"
+            className="absolute bottom-0 left-0 h-px origin-left bg-[var(--fg)]"
             initial={{ width: "0%" }}
             whileInView={{ width: "100%" }}
             viewport={{ once: true }}
