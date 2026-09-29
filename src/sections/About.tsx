@@ -28,17 +28,17 @@ export function About() {
             </div>
           </Reveal>
 
-          <div className="grid gap-10 sm:grid-cols-[1fr_260px]">
+          <div className="grid gap-12 sm:grid-cols-[1fr_280px]">
             <div className="space-y-4">
               {site.about.map((paragraph, index) => (
                 <Reveal key={paragraph} delay={index * 0.06} y={16}>
-                  <p className="text-sm leading-7 text-[var(--muted)]">{paragraph}</p>
+                  <p className="max-w-[62ch] font-sans text-[15px] font-medium leading-8 text-[var(--fg)] opacity-[.82]">{paragraph}</p>
                 </Reveal>
               ))}
             </div>
 
             <Reveal delay={0.12} y={18}>
-              <div className="rounded-xl border border-[var(--line)] bg-[var(--card)] p-4">
+              <div className="rounded-2xl border border-[var(--line)] bg-[var(--card)] p-5 shadow-[0_18px_60px_rgba(0,0,0,.1)]">
                 <p className="mb-3 font-mono text-[9px] uppercase tracking-[.16em] text-[var(--soft)]">
                   developer snapshot
                 </p>
@@ -48,7 +48,7 @@ export function About() {
                       key={item}
                       whileHover={{ x: 4 }}
                       transition={{ type: "spring", stiffness: 420, damping: 34 }}
-                      className="group flex items-center gap-3 border-b border-[var(--line)] py-2.5 text-xs last:border-b-0"
+                      className="group flex items-center gap-3 border-b border-[var(--line)] py-3 text-[13px] font-semibold last:border-b-0"
                     >
                       <span className="font-mono text-[9px] text-[var(--fg)]">0{index + 1}</span>
                       <span className="text-[var(--muted)] transition-colors group-hover:text-[var(--fg)]">{item}</span>

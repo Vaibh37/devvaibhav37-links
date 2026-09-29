@@ -32,10 +32,10 @@ export function Writing() {
                   <div className="min-w-0 flex-1">
                     <span className="font-mono text-[9px] uppercase tracking-wider text-[var(--soft)]">{w.date}</span>
                     <div className="mt-1 flex items-start justify-between gap-4">
-                      <h3 className="font-serif text-2xl">{w.title}</h3>
+                      <h3 className="font-sans text-2xl font-bold tracking-[-.04em]">{w.title}</h3>
                       <ArrowUpRight size={15} className="mt-1 shrink-0 text-[var(--soft)] transition group-hover:text-[var(--fg)]" />
                     </div>
-                    <p className="mt-2 text-xs leading-6 text-[var(--muted)]">{w.summary}</p>
+                    <p className="mt-2 max-w-2xl text-[13px] font-medium leading-6 text-[var(--muted)]">{w.summary}</p>
                     <span className="mt-4 inline-block font-mono text-[9px] text-[var(--soft)]">part 1 / 8 · read on X ↗</span>
                   </div>
                 </div>

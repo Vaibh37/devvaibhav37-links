@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { Github } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { GapBand, SectionHeader, Shell } from "../components/Layout";
@@ -9,6 +9,7 @@ type Day = { date: string; count: number; level: number };
 type Api = { total?: { lastYear?: number }; contributions?: Array<{ date: string; count: number; level: number }> };
 
 export function GithubActivity() {
+  const reduceMotion = useReducedMotion();
   const [days, setDays] = useState<Day[]>([]);
   const [total, setTotal] = useState<number | null>(null);
   const [failed, setFailed] = useState(false);
@@ -92,10 +93,10 @@ export function GithubActivity() {
                       {week.map((day, dayIndex) => (
                         <motion.span
                           key={day.date}
-                          initial={{ opacity: 0, scale: 0.45 }}
-                          whileInView={{ opacity: 1, scale: 1 }}
+                          initial={reduceMotion ? false : { opacity: 0, scale: 0.45 }}
+                          whileInView={reduceMotion ? undefined : { opacity: 1, scale: 1 }}
                           viewport={{ once: true }}
-                          whileHover={{ scale: 1.55, zIndex: 4 }}
+                          whileHover={reduceMotion ? undefined : { scale: 1.55, zIndex: 4 }}
                           transition={{
                             delay: (weekIndex * 7 + dayIndex) * 0.0008,
                             duration: 0.16,
