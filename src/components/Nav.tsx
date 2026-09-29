@@ -66,7 +66,7 @@ export function Nav({
           <motion.span
             whileHover={{ rotate: -5, scale: 1.06 }}
             whileTap={{ scale: 0.94 }}
-            className="grid h-7 w-7 place-items-center border border-[var(--line)] text-[var(--accent)]"
+            className="grid h-7 w-7 place-items-center border border-[var(--line)] text-[var(--fg)]"
           >
             V
           </motion.span>
@@ -140,7 +140,7 @@ export function Nav({
                   key={id}
                   onClick={() => go(id)}
                   className={`bg-[var(--bg)] px-2 py-3 font-mono text-[9px] lowercase transition ${
-                    active === id ? "text-[var(--accent)]" : "text-[var(--soft)]"
+                    active === id ? "text-[var(--fg)]" : "text-[var(--soft)]"
                   }`}
                 >
                   {label}
