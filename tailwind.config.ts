@@ -5,9 +5,9 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["Inter", "system-ui", "sans-serif"],
+        sans: ["Manrope", "system-ui", "sans-serif"],
         serif: ["Instrument Serif", "Georgia", "serif"],
-        mono: ["DM Mono", "monospace"],
+        mono: ["JetBrains Mono", "monospace"],
       },
     },
   },
