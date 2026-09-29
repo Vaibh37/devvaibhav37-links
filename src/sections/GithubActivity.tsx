@@ -79,7 +79,7 @@ export function GithubActivity() {
                   href={site.github}
                   target="_blank"
                   rel="noreferrer"
-                  className="font-mono text-[9px] text-[var(--accent)]"
+                  className="font-mono text-[9px] text-[var(--fg)]"
                 >
                   profile ↗
                 </a>
