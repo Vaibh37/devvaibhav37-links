@@ -24,7 +24,7 @@ export function Writing() {
               >
                 <div className="flex items-start gap-4">
                   <motion.span
-                    className="mt-1 text-[var(--accent)]"
+                    className="mt-1 text-[var(--fg)]"
                     whileHover={{ rotate: -8, scale: 1.08 }}
                   >
                     <BookOpen size={16} />
@@ -33,7 +33,7 @@ export function Writing() {
                     <span className="font-mono text-[9px] uppercase tracking-wider text-[var(--soft)]">{w.date}</span>
                     <div className="mt-1 flex items-start justify-between gap-4">
                       <h3 className="font-serif text-2xl">{w.title}</h3>
-                      <ArrowUpRight size={15} className="mt-1 shrink-0 text-[var(--soft)] transition group-hover:text-[var(--accent)]" />
+                      <ArrowUpRight size={15} className="mt-1 shrink-0 text-[var(--soft)] transition group-hover:text-[var(--fg)]" />
                     </div>
                     <p className="mt-2 text-xs leading-6 text-[var(--muted)]">{w.summary}</p>
                     <span className="mt-4 inline-block font-mono text-[9px] text-[var(--soft)]">part 1 / 8 · read on X ↗</span>
