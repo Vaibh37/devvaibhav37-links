@@ -38,7 +38,7 @@ export function Projects() {
                     <span className="pt-1 font-mono text-[10px] text-[var(--soft)]">0{index + 1}</span>
                     <span>
                       <span className="flex flex-wrap items-center gap-2">
-                        <strong className="font-serif text-3xl font-normal transition-colors group-hover:text-[var(--accent)] sm:text-4xl">
+                        <strong className="font-serif text-3xl font-normal transition-colors group-hover:text-[var(--fg)] sm:text-4xl">
                           {project.title}
                         </strong>
                         <span className="rounded-full border border-[var(--line)] px-2 py-1 font-mono text-[8px] uppercase tracking-wider text-[var(--soft)]">
@@ -74,7 +74,7 @@ export function Projects() {
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.08, duration: 0.35 }}
                           >
-                            <p className="font-mono text-[9px] uppercase tracking-[.16em] text-[var(--accent)]">
+                            <p className="font-mono text-[9px] uppercase tracking-[.16em] text-[var(--fg)]">
                               {project.label} · {project.year}
                             </p>
                             <p className="mt-3 text-xs leading-6 text-[var(--muted)]">{project.story}</p>
