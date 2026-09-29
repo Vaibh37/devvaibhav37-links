@@ -99,8 +99,8 @@ export function Hero({ onOpenPalette }: { onOpenPalette: () => void }) {
               <span>{time} IST</span>
               <span>·</span>
               <span className="inline-flex items-center gap-1.5 text-[var(--muted)]">
-                <i className="relative h-1.5 w-1.5 rounded-full bg-emerald-500">
-                  <i className="absolute inset-0 animate-ping rounded-full bg-emerald-500 opacity-60" />
+                <i className="relative h-1.5 w-1.5 rounded-full bg-[var(--fg)]">
+                  <i className="absolute inset-0 animate-ping rounded-full bg-[var(--fg)] opacity-60" />
                 </i>
                 building
               </span>
