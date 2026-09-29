@@ -116,67 +116,16 @@ export function Hero({ onOpenPalette }: { onOpenPalette: () => void }) {
                   transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] },
                 },
               }}
-              whileHover={reduceMotion ? undefined : { y: -3 }}
-              className="relative mb-9 overflow-hidden rounded-xl border border-[var(--line)] bg-[var(--card)] shadow-[0_18px_80px_rgba(0,0,0,.16)]"
+              whileHover={reduceMotion ? undefined : { y: -3, scale: 1.003 }}
+              transition={{ type: "spring", stiffness: 240, damping: 24 }}
+              className="relative mx-auto mb-9 w-full max-w-[1080px] overflow-hidden rounded-xl border border-[var(--line)] bg-[var(--card)] shadow-[0_14px_55px_rgba(0,0,0,.13)]"
             >
-              <motion.div
-                className="absolute inset-0 bg-radial-mono opacity-70"
-                animate={reduceMotion ? undefined : { scale: [1, 1.04, 1], opacity: [0.52, 0.66, 0.52] }}
-                transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+              <img
+                src="/shanks-banner.png"
+                alt="Are you that afraid of the new era?"
+                className="block h-auto w-full"
               />
-              <div className="absolute inset-0 bg-grid-fine opacity-50" />
-              <div className="relative flex min-h-40 items-end justify-between p-5 sm:min-h-52 sm:p-8">
-                <div className="relative max-w-[820px]">
-                  <motion.span
-                    initial={{ opacity: 0, x: -12 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: .42, duration: .5 }}
-                    className="font-mono text-[9px] uppercase tracking-[.2em] text-[var(--soft)]"
-                  >
-                    red hair / 037
-                  </motion.span>
-
-                  <motion.p
-                    initial={{ opacity: 0, y: 18 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: .16, duration: .76, ease: [.22, 1, .36, 1] }}
-                    className="mt-5 font-serif text-[clamp(2.9rem,7.4vw,5.6rem)] leading-[.84] tracking-[-.045em]"
-                  >
-                    <span className="block">ARE YOU THAT</span>
-                    <span className="block">AFRAID OF THE</span>
-                    <span className="relative inline-block pr-[.08em]">
-                      NEW ERA?
-                      <motion.span
-                        initial={reduceMotion ? false : { opacity: 0, x: 16 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: .72, duration: .5, ease: [.22, 1, .36, 1] }}
-                        className="absolute -right-16 top-[12%] hidden font-mono text-[10px] font-semibold uppercase tracking-[.24em] text-[var(--fg)] sm:block"
-                      >
-                        RUST
-                      </motion.span>
-                      <motion.span
-                        aria-hidden="true"
-                        initial={reduceMotion ? false : { scaleX: 0 }}
-                        animate={{ scaleX: 1 }}
-                        transition={{ delay: .62, duration: .7, ease: [.22, 1, .36, 1] }}
-                        className="absolute -bottom-2 left-0 h-px w-full origin-left bg-[var(--fg)] opacity-60"
-                      />
-                    </span>
-                  </motion.p>
-
-                  <motion.div
-                    initial={reduceMotion ? false : { opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: .86, duration: .5 }}
-                    className="mt-5 flex items-center gap-3 font-mono text-[9px] uppercase tracking-[.16em] text-[var(--soft)]"
-                  >
-                    <span>systems</span><span>/</span><strong className="font-semibold text-[var(--fg)]">rust</strong><span>/</span><span>open source</span>
-                  </motion.div>
-                </div>
-                <span className="hidden font-mono text-[10px] text-[var(--soft)] sm:block">
-                  bounty // 000000
-                </span>
-              </div>
+              <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-white/5" />
             </motion.div>
 
             <motion.div
