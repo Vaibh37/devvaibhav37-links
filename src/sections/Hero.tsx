@@ -127,12 +127,10 @@ export function Hero({ onOpenPalette }: { onOpenPalette: () => void }) {
               <div className="absolute inset-0 bg-grid-fine opacity-50" />
               <div className="relative flex min-h-40 items-end justify-between p-5 sm:min-h-52 sm:p-8">
                 <div>
-                  <span className="font-mono text-[10px] uppercase tracking-[.18em] text-[var(--soft)]">
-                    signal / 037
-                  </span>
-                  <p className="mt-3 max-w-xl font-serif text-4xl leading-[.95] sm:text-[58px]">
+                  <motion.span initial={{opacity:0,x:-12}} animate={{opacity:1,x:0}} transition={{delay:.45,duration:.5}} className="font-mono text-[10px] uppercase tracking-[.18em] text-[var(--soft)]">signal / 037</motion.span>
+                  <motion.p initial={{opacity:0,y:14}} animate={{opacity:1,y:0}} transition={{delay:.18,duration:.7,ease:[.22,1,.36,1]}} className="mt-3 max-w-xl font-serif text-4xl leading-[.95] sm:text-[58px]">
                     Building slowly. Learning deeply. Shipping what survives.
-                  </p>
+                  </motion.p>
                 </div>
                 <span className="hidden font-mono text-[10px] text-[var(--soft)] sm:block">
                   bounty // 000000
