@@ -50,7 +50,7 @@ export const site = {
       year: "2026",
       status: "Live",
       source: "https://github.com/Vaibh37/Studyos",
-      live: "https://studyos-one-omega.vercel.app/",
+      live: "https://studyos37.vercel.app/",
     },
     {
       title: "Exam Eligibility Engine",
